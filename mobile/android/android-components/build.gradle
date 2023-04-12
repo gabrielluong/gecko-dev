@@ -278,8 +278,10 @@ subprojects {
     }
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+if (!gradle.hasProperty("localProperties.useLocalGeckoView")) {
+    tasks.register("clean", Delete) {
+        delete rootProject.buildDir
+    }
 }
 
 detekt {

@@ -14,7 +14,12 @@ buildscript {
         }
     }
 
-    ext.kotlin_version = '1.8.21'
+    ext {
+        kotlin_version = Versions.kotlin
+        detekt_plugin = Versions.detekt
+        python_envs_plugin = Versions.python_envs_plugin
+        ksp_plugin = Versions.ksp_plugin
+    }
 
     dependencies {
         classpath 'org.mozilla.apilint:apilint:0.5.2'
@@ -24,6 +29,11 @@ buildscript {
         classpath 'org.tomlj:tomlj:1.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+}
+
+plugins {
+    id("io.gitlab.arturbosch.detekt").version("$detekt_plugin")
+    id("com.google.devtools.ksp").version("$ksp_plugin")
 }
 
 def tryInt = { string ->
@@ -81,6 +91,18 @@ allprojects {
             ANDROID_TARGET_SDK: mozconfig.substs.ANDROID_TARGET_SDK,
             MOZ_ANDROID_MIN_SDK_VERSION: mozconfig.substs.MOZ_ANDROID_MIN_SDK_VERSION,
         ]
+    }
+
+    project.configurations.all {
+        resolutionStrategy.capabilitiesResolution.withCapability("org.mozilla.telemetry:glean-native") {
+            def toBeSelected = candidates.find {
+                it.id instanceof ProjectComponentIdentifier && it.id.projectName.contains('geckoview')
+            }
+            if (toBeSelected != null) {
+                select(toBeSelected)
+            }
+            because 'use GeckoView Glean instead of standalone Glean'
+        }
     }
 
     repositories {

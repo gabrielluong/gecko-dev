@@ -2,8 +2,16 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+    buildDir "${topobjdir}/gradle/build/mobile/android/samples-browser"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+
+if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+    apply from: "${topsrcdir}/mobile/android/gradle/product_flavors.gradle"
+}
 
 android {
     defaultConfig {
@@ -26,7 +34,12 @@ android {
         }
     }
 
-    flavorDimensions "engine"
+    if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+        project.configureProductFlavors.delegate = it
+        project.configureProductFlavors()
+    }
+
+    flavorDimensions += "engine"
 
     productFlavors {
         gecko {
@@ -68,6 +81,10 @@ tasks.register("updateTestExtensionVersion", Copy) { task ->
 }
 
 dependencies {
+    if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+        implementation project(path: ':geckoview')
+    }
+
     implementation project(':concept-awesomebar')
     implementation project(':concept-fetch')
     implementation project(':concept-engine')
