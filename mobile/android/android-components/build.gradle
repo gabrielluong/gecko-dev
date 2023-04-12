@@ -278,7 +278,7 @@ subprojects {
     }
 }
 
-tasks.register("clean", Delete) {
+tasks.register("androidComponentsClean", Delete) {
     delete rootProject.buildDir
 }
 
