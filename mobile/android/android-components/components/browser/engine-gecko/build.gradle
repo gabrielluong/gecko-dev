@@ -59,7 +59,8 @@ dependencies {
 
     implementation ComponentsDependencies.kotlin_coroutines
 
-    api ComponentsDependencies.mozilla_geckoview
+//    api ComponentsDependencies.mozilla_geckoview
+    api project(':geckoview')
 
     implementation ComponentsDependencies.androidx_paging
     testImplementation ComponentsDependencies.androidx_test_core
