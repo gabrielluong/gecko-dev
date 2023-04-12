@@ -75,6 +75,7 @@ subprojects {
     }
 
     project.configurations.all {
+        throw new AssertionError("GLGL - THROW")
         // Dependencies can't depend on a different major version of Glean than A-C itself.
         resolutionStrategy.eachDependency { details ->
             if (details.requested.group == 'org.mozilla.telemetry'
@@ -100,7 +101,14 @@ subprojects {
         }
 
         resolutionStrategy.capabilitiesResolution.withCapability("org.mozilla.telemetry:glean-native") {
-            def toBeSelected = candidates.find { it.id instanceof ModuleComponentIdentifier && it.id.module.contains('geckoview') }
+            println("GLGL capabilitiesResolution")
+            def toBeSelected = candidates.find { candidates ->
+                println(candidates.id)
+                println(candidates.id.module)
+                def result = candidates.id instanceof ModuleComponentIdentifier && candidates.id.module.contains('geckoview')
+                println("Result ${result}")
+                return result
+            }
             if (toBeSelected != null) {
                 select(toBeSelected)
             }
@@ -293,7 +301,7 @@ subprojects {
     }
 }
 
-tasks.register("clean", Delete) {
+tasks.register("androidComponentsClean", Delete) {
     delete rootProject.buildDir
 }
 
@@ -370,7 +378,7 @@ tasks.register("ktlint", JavaExec) {
     args "components/**/*.kt" , "samples/**/*.kt", "!**/build/**/*.kt", "buildSrc/**/*.kt", "--baseline=ktlint-baseline.xml"
 }
 
-apply plugin: GitHubPlugin
+//apply plugin: GitHubPlugin
 
 tasks.register("ktlintFormat", JavaExec) {
     group = "formatting"
@@ -387,21 +395,21 @@ tasks.register("listRepositories") {
    }
 }
 
-tasks.register("githubBuildDetails", GithubDetailsTask) {
-    text = """### Test result files
-
-- [Test Coverage]({reportsUrl}/jacoco/jacocoReleaseTestReport/html/index.html)
-- [Unit Tests]({reportsUrl}/tests/testReleaseUnitTest/index.html)
-- [Android Lint]({reportsUrl}/lint-results-release.html)"""
-}
-
-tasks.register("githubLintDetektDetails", GithubDetailsTask) {
-    text = "### [Detekt Results Android-Components]({reportsUrl}/detekt.html)"
-}
-
-tasks.register("githubLintAndroidDetails", GithubDetailsTask) {
-    text = "### [Android Lint Results Android-Components]({reportsUrl}/lint-results-debug.html)"
-}
+//tasks.register("githubBuildDetails", GithubDetailsTask) {
+//    text = """### Test result files
+//
+//- [Test Coverage]({reportsUrl}/jacoco/jacocoReleaseTestReport/html/index.html)
+//- [Unit Tests]({reportsUrl}/tests/testReleaseUnitTest/index.html)
+//- [Android Lint]({reportsUrl}/lint-results-release.html)"""
+//}
+//
+//tasks.register("githubLintDetektDetails", GithubDetailsTask) {
+//    text = "### [Detekt Results Android-Components]({reportsUrl}/detekt.html)"
+//}
+//
+//tasks.register("githubLintAndroidDetails", GithubDetailsTask) {
+//    text = "### [Android Lint Results Android-Components]({reportsUrl}/lint-results-debug.html)"
+//}
 
 tasks.register("testToolsDir", Exec) {
     group = "verification"
