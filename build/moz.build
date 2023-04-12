@@ -35,6 +35,10 @@ if CONFIG["MOZ_BUILD_APP"] == "browser":
         "compare-mozconfig/python.ini",
     ]
 
+PYTHON_UNITTEST_MANIFESTS += [
+    "tests/python/python.ini",
+]
+
 if CONFIG["ENABLE_TESTS"] or CONFIG["MOZ_DMD"]:
     FINAL_TARGET_FILES += ["/tools/rb/fix_stacks.py"]
 

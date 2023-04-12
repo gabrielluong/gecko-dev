@@ -1,0 +1,6 @@
+         WebExtensionDelegate,
+         SharedPreferences.OnSharedPreferenceChangeListener {
+-  private static final String LOGTAG = "GeckoViewActivity";
++  private static final String LOGTAG = "GeckoViewActivityCRAMTEST";
+   private static final String FULL_ACCESSIBILITY_TREE_EXTRA = "full_accessibility_tree";
+   private static final String SEARCH_URI_BASE = "https://www.google.com/search?q=";

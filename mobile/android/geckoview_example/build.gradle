@@ -51,9 +51,19 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.4.0"
     implementation "androidx.preference:preference:1.1.1"
 
-    implementation project(path: ':geckoview')
+    if (project.hasProperty('test_substitute_local_geckoview')) {
+        // Allow to test using `substitute-local-geckoview.gradle`.
+        implementation "org.mozilla.geckoview:geckoview-nightly-omni:+"
+    } else {
+        implementation project(path: ':geckoview')
+    }
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.google.android.material:material:1.4.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
+}
+
+if (project.hasProperty('test_substitute_local_geckoview')) {
+    // Allow to test using `substitute-local-geckoview.gradle`.
+    apply from: "${topsrcdir}/substitute-local-geckoview.gradle"
 }

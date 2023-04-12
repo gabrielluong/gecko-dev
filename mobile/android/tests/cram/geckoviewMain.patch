@@ -1,0 +1,8 @@
+--- a/mobile/android/geckoview/src/main/java/org/mozilla/geckoview/GeckoView.java
++++ b/mobile/android/geckoview/src/main/java/org/mozilla/geckoview/GeckoView.java
+@@ -61,5 +61,5 @@ import org.mozilla.gecko.util.ThreadUtils;
+ @UiThread
+ public class GeckoView extends FrameLayout {
+-  private static final String LOGTAG = "GeckoView";
++  private static final String LOGTAG = "GeckoViewCRAMTEST";
+   private static final boolean DEBUG = false;
