@@ -194,12 +194,15 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
 configurations {
     withGeckoBinariesApi {
         outgoing {
+            println("GLGL withGeckoBinariesApi")
             if (!mozconfig.substs.MOZ_ANDROID_GECKOVIEW_LITE) {
                 // The omni build provides glean-native
+                println("GLGL withGeckoBinariesApi - capability")
                 capability("org.mozilla.telemetry:glean-native:${project.ext.gleanVersion}")
             }
             afterEvaluate {
                 // Implicit capability
+                println("GLGL withGeckoBinariesApi - afterEvaluate")
                 capability("org.mozilla.geckoview:${getArtifactId()}:${project.ext.versionNumber}")
             }
         }
@@ -212,6 +215,7 @@ configurations {
         outgoing {
             afterEvaluate {
                 // Implicit capability
+                println("GLGL withGeckoBinariesRuntimeOnly - afterEvaluate")
                 capability("org.mozilla.geckoview:geckoview:${project.ext.versionNumber}")
             }
         }
