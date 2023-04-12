@@ -22,6 +22,16 @@ android {
     namespace 'mozilla.components.service.glean'
 }
 
+configurations.all {
+    resolutionStrategy.capabilitiesResolution.withCapability("org.mozilla.telemetry:glean-native") {
+        def toBeSelected = candidates.find { it.id instanceof ModuleComponentIdentifier && it.id.module.contains('geckoview') }
+        if (toBeSelected != null) {
+            select(toBeSelected)
+        }
+        because 'use GeckoView Glean instead of standalone Glean'
+    }
+}
+
 // Define library names and version constants.
 String GLEAN_LIBRARY = "org.mozilla.telemetry:glean:${Versions.mozilla_glean}"
 String GLEAN_LIBRARY_FORUNITTESTS = "org.mozilla.telemetry:glean-native-forUnitTests:${Versions.mozilla_glean}"
