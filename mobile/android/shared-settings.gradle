@@ -43,7 +43,7 @@ class Config {
 def setupProject(name, path, description) {
     settings.include(":$name")
 
-    project(":$name").projectDir = new File(rootDir, "../android-components/${path}")
+    project(":$name").projectDir = new File(rootDir, "/mobile/android/android-components/${path}")
 
     // project(...) gives us a skeleton project that we can't set ext.* on
     gradle.beforeProject { project ->
@@ -72,7 +72,7 @@ def getManifestVersionString(componentsVersion) {
 }
 
 def yaml = new Yaml()
-def buildconfig = yaml.load(new File(rootDir, '../android-components/.buildconfig.yml').newInputStream())
+def buildconfig = yaml.load(new File(rootDir, '/mobile/android/android-components/.buildconfig.yml').newInputStream())
 
 buildconfig.projects.each { project ->
     // If we're building A-C, set up all projects, otherwise exclude samples e.g., if we're building Fenix or Focus.
@@ -83,8 +83,8 @@ buildconfig.projects.each { project ->
 }
 
 gradle.projectsLoaded { ->
-    def componentsVersion = new File(rootDir, '../version.txt').text.stripTrailing()
-    def configData = yaml.load(new File(rootDir, '../android-components/.config.yml').newInputStream())
+    def componentsVersion = new File(rootDir, '/mobile/android/version.txt').text.stripTrailing()
+    def configData = yaml.load(new File(rootDir, '/mobile/android/android-components/.config.yml').newInputStream())
     String version = componentsVersion
 
     if (gradle.rootProject.hasProperty("nightlyVersion")) {
