@@ -59,6 +59,18 @@ allprojects {
         ]
     }
 
+    project.configurations.all {
+        resolutionStrategy.capabilitiesResolution.withCapability("org.mozilla.telemetry:glean-native") {
+            def toBeSelected = candidates.find {
+                it.id instanceof ProjectComponentIdentifier && it.id.projectName.contains('geckoview')
+            }
+            if (toBeSelected != null) {
+                select(toBeSelected)
+            }
+            because 'use GeckoView Glean instead of standalone Glean'
+        }
+    }
+
     repositories {
         gradle.mozconfig.substs.GRADLE_MAVEN_REPOSITORIES.each { repository ->
             maven {
@@ -110,7 +122,11 @@ buildscript {
         }
     }
 
-    ext.kotlin_version = '1.8.21'
+    ext {
+        kotlin_version = Versions.kotlin
+        detekt_plugin = Versions.detekt
+        python_envs_plugin = Versions.python_envs_plugin
+    }
 
     dependencies {
         classpath 'org.mozilla.apilint:apilint:0.5.2'
