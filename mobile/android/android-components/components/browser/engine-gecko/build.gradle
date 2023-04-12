@@ -61,7 +61,11 @@ dependencies {
     }
     implementation ComponentsDependencies.kotlin_coroutines
 
-    api ComponentsDependencies.mozilla_geckoview
+    if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+        api project(':geckoview')
+    } else {
+        api ComponentsDependencies.mozilla_geckoview
+    }
 
     implementation ComponentsDependencies.androidx_paging
     implementation ComponentsDependencies.androidx_data_store_preferences
