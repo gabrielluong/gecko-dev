@@ -12,6 +12,7 @@ plugins {
 }
 
 apply from: file('../shared-settings.gradle')
+apply from: file('../../../settings.gradle')
 
 buildCache {
     local {

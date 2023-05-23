@@ -1,4 +1,4 @@
-buildDir "${topobjdir}/gradle/build/mobile/android/geckoview"
+buildDir "/Users/oracle/Projects/gecko-dev/gradle/build/mobile/android/geckoview"
 
 import groovy.json.JsonOutput
 
@@ -6,15 +6,15 @@ apply plugin: 'com.android.library'
 apply plugin: 'checkstyle'
 apply plugin: 'kotlin-android'
 
-apply from: "${topsrcdir}/mobile/android/gradle/product_flavors.gradle"
+apply from: "/Users/oracle/Projects/gecko-dev/mobile/android/gradle/product_flavors.gradle"
 
 // The SDK binding generation tasks depend on the JAR creation task of the
 // :annotations project.
 evaluationDependsOn(':annotations')
 
 android {
-    buildToolsVersion project.ext.buildToolsVersion
-    compileSdkVersion project.ext.compileSdkVersion
+//    buildToolsVersion ${mozconfig.substs.ANDROID_BUILD_TOOLS_VERSION}
+//    compileSdkVersion project.ext.compileSdkVersion
 
     useLibrary 'android.test.runner'
     useLibrary 'android.test.base'

@@ -1,6 +1,9 @@
 // You might think topsrcdir is '.', but that's not true when the Gradle build
 // is launched from within IntelliJ.
-def topsrcdir = rootProject.projectDir.absolutePath
+//def topsrcdir = rootProject.projectDir.absolutePath
+def topsrcdir = "/Users/oracle/Projects/gecko-dev"
+println("GLGL $topsrcdir")
+//def topsrcdir = "../gecko-dev"
 
 apply from: "${topsrcdir}/mobile/android/gradle/mach_env.gradle"
 
@@ -50,17 +53,17 @@ if (json.substs.MOZ_BUILD_APP != 'mobile/android') {
 // but it's hard to automatically arrange better.
 System.setProperty('android.home', json.substs.ANDROID_SDK_ROOT)
 
-include ':annotations', ':messaging_example', ':port_messaging_example'
+include ':annotations'//, ':messaging_example', ':port_messaging_example'
 include ':geckoview'
-include ':geckoview_example'
-include ':test_runner'
-include ':exoplayer2'
+//include ':geckoview_example'
+//include ':test_runner'
+//include ':exoplayer2'
 
 project(':annotations').projectDir = new File("${json.topsrcdir}/mobile/android/annotations")
 project(':geckoview').projectDir = new File("${json.topsrcdir}/mobile/android/geckoview")
-project(':geckoview_example').projectDir = new File("${json.topsrcdir}/mobile/android/geckoview_example")
-project(':test_runner').projectDir = new File("${json.topsrcdir}/mobile/android/test_runner")
-project(':exoplayer2').projectDir = new File("${json.topsrcdir}/mobile/android/exoplayer2")
+//project(':geckoview_example').projectDir = new File("${json.topsrcdir}/mobile/android/geckoview_example")
+//project(':test_runner').projectDir = new File("${json.topsrcdir}/mobile/android/test_runner")
+//project(':exoplayer2').projectDir = new File("${json.topsrcdir}/mobile/android/exoplayer2")
 
 if (hasProperty("androidFormatLintTest")) {
     include ':androidFormatLintTest'
@@ -84,5 +87,5 @@ gradle.ext.mozconfig = json
 // based on the changed environment variables.
 def orig = slurper.parse(new File(json.topobjdir, '.mozconfig.json'))
 gradle.ext.mozconfig.orig_mozconfig = orig.mozconfig
-project(':messaging_example').projectDir = new File('mobile/android/examples/messaging_example/app')
-project(':port_messaging_example').projectDir = new File('mobile/android/examples/port_messaging_example/app')
+//project(':messaging_example').projectDir = new File('mobile/android/examples/messaging_example/app')
+//project(':port_messaging_example').projectDir = new File('mobile/android/examples/port_messaging_example/app')

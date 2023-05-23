@@ -1,4 +1,4 @@
-buildDir "${topobjdir}/gradle/build/mobile/android/exoplayer2"
+buildDir "/Users/oracle/Projects/gecko-dev/gradle/build/mobile/android/exoplayer2"
 
 apply plugin: 'com.android.library'
 
@@ -9,7 +9,7 @@ dependencies {
     compileOnly "org.checkerframework:checker-qual:2.5.0"
     compileOnly "org.jetbrains.kotlin:kotlin-annotations-jvm:1.7.10"
 
-    androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    androidTestImplementation "org.jetbrains.kotlin:kotlin-stdlib:1.8.21"
 
     implementation "androidx.annotation:annotation:1.1.0"
 }

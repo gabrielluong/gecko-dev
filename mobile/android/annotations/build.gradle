@@ -1,4 +1,5 @@
-buildDir "${topobjdir}/gradle/build/mobile/android/annotations"
+//def topsrcdir = "/Users/oracle/Projects/gecko-dev"
+buildDir "/Users/oracle/Projects/gecko-dev/gradle/build/mobile/android/annotations"
 
 apply plugin: 'java'
 
