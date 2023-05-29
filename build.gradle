@@ -135,6 +135,9 @@ buildscript {
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.18.0'
         classpath 'org.tomlj:tomlj:1.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.android.gms:oss-licenses-plugin:0.10.4"
+        classpath "org.mozilla.telemetry:glean-gradle-plugin:${Versions.mozilla_glean}"
+        classpath "${ApplicationServicesConfig.groupId}:tooling-nimbus-gradle:${ApplicationServicesConfig.version}"
     }
 }
 

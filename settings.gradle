@@ -1,10 +1,14 @@
 pluginManagement {
     includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/dependencies")
     includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/publicsuffixlist")
+    includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/config")
+    includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/focus-android/plugins/focusdependencies")
 }
 
 plugins {
+    id "mozac.ConfigPlugin"
     id 'mozac.DependenciesPlugin'
+    id 'FocusDependenciesPlugin'
 }
 
 // You might think topsrcdir is '.', but that's not true when the Gradle build
@@ -67,6 +71,9 @@ include ':test_runner'
 include ':exoplayer2'
 include ':android-components'
 include ':samples-browser'
+include ':service-telemetry'
+include ':focus-android'
+//include ':focus-android-app'
 // TODO: Could we just include Fenix instead of AC
 // TODO: Alternative to the current approach here: Add the root gradle to the Fenix gradle
 //include ':fenix'
@@ -78,6 +85,9 @@ project(':test_runner').projectDir = new File("${json.topsrcdir}/mobile/android/
 project(':exoplayer2').projectDir = new File("${json.topsrcdir}/mobile/android/exoplayer2")
 project(':android-components').projectDir = new File("${json.topsrcdir}/mobile/android/android-components")
 project(':samples-browser').projectDir = new File("${json.topsrcdir}/mobile/android/android-components/samples/browser")
+project(':service-telemetry').projectDir = new File("${json.topsrcdir}/mobile/android/focus-android/service-telemetry")
+project(':focus-android').projectDir = new File("${json.topsrcdir}/mobile/android/focus-android/app")
+//project(':focus-android-app').projectDir = new File("${json.topsrcdir}/mobile/android/focus-android")
 //project(':fenix').projectDir = new File("${json.topsrcdir}/mobile/android/fenix")
 // Question:
 // - Could you combine settings.gradle?

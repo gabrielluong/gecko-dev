@@ -1,6 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-import org.mozilla.focus.gradle.tasks.GithubDetailsTask
+//import org.mozilla.focus.gradle.tasks.GithubDetailsTask
 
 buildscript {
     repositories {
@@ -103,7 +103,7 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register("focusClean", Delete) {
     delete rootProject.buildDir
 }
 
@@ -143,14 +143,14 @@ tasks.register("listRepositories") {
    }
 }
 
-tasks.register("githubTestDetails", GithubDetailsTask) {
-    text = "### [Unit Test Results]({reportsUrl}/test/testFocusDebugUnitTest/index.html)"
-}
-
-tasks.register("githubLintDetektDetails", GithubDetailsTask) {
-    text = "### [Detekt Results Focus]({reportsUrl}/detekt.html)"
-}
-
-tasks.register("githubLintAndroidDetails", GithubDetailsTask) {
-    text = "### [Android Lint Results Focus]({reportsUrl}/lint-results-debug.html)"
-}
+//tasks.register("githubTestDetails", GithubDetailsTask) {
+//    text = "### [Unit Test Results]({reportsUrl}/test/testFocusDebugUnitTest/index.html)"
+//}
+//
+//tasks.register("githubLintDetektDetails", GithubDetailsTask) {
+//    text = "### [Detekt Results Focus]({reportsUrl}/detekt.html)"
+//}
+//
+//tasks.register("githubLintAndroidDetails", GithubDetailsTask) {
+//    text = "### [Android Lint Results Focus]({reportsUrl}/lint-results-debug.html)"
+//}
