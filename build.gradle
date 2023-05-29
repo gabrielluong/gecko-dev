@@ -19,6 +19,7 @@ buildscript {
         detekt_plugin = Versions.detekt
         python_envs_plugin = Versions.python_envs_plugin
         ksp_plugin = Versions.ksp_plugin
+        osslicenses_plugin = FocusVersions.osslicenses_plugin
     }
 
     dependencies {
@@ -28,6 +29,9 @@ buildscript {
         classpath 'com.diffplug.spotless:spotless-plugin-gradle:6.18.0'
         classpath 'org.tomlj:tomlj:1.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.android.gms:oss-licenses-plugin:$osslicenses_plugin"
+        classpath "org.mozilla.telemetry:glean-gradle-plugin:${Versions.mozilla_glean}"
+        classpath "${ApplicationServicesConfig.groupId}:tooling-nimbus-gradle:${ApplicationServicesConfig.version}"
     }
 }
 
