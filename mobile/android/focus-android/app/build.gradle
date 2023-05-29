@@ -2,12 +2,25 @@ plugins {
     id "com.jetbrains.python.envs" version "$python_envs_plugin"
 }
 
+if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+    buildDir "${topobjdir}/gradle/build/mobile/android/focus-android"
+}
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'jacoco'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
-apply from: "$project.rootDir/tools/gradle/versionCode.gradle"
+
+def versionCodeGradle = "$project.rootDir/mobile/android/focus-android/tools/gradle/versionCode.gradle"
+if (rootDir.toString().endsWith("focus-android")) {
+    versionCodeGradle = "$project.rootDir/tools/gradle/versionCode.gradle"
+}
+apply from: versionCodeGradle
+
+if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+    apply from: "${topsrcdir}/mobile/android/gradle/product_flavors.gradle"
+}
 
 import com.android.build.api.variant.FilterConfiguration
 import groovy.json.JsonOutput
@@ -103,6 +116,11 @@ android {
         kotlinCompilerExtensionVersion = Versions.compose_compiler
     }
 
+    if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
+        project.configureProductFlavors.delegate = it
+        project.configureProductFlavors()
+    }
+
     flavorDimensions.add("product")
 
     productFlavors {
@@ -146,16 +164,16 @@ android {
         }
 
         // Release
-        focusRelease.root = 'src/focusRelease'
-        klarRelease.root = 'src/klarRelease'
-
-        // Debug
-        focusDebug.root = 'src/focusDebug'
-        klarDebug.root = 'src/klarDebug'
-
-        // Nightly
-        focusNightly.root = 'src/focusNightly'
-        klarNightly.root = 'src/klarNightly'
+//        focusRelease.root = 'src/focusRelease'
+//        klarRelease.root = 'src/klarRelease'
+//
+//        // Debug
+//        focusDebug.root = 'src/focusDebug'
+//        klarDebug.root = 'src/klarDebug'
+//
+//        // Nightly
+//        focusNightly.root = 'src/focusNightly'
+//        klarNightly.root = 'src/klarNightly'
     }
     packagingOptions {
         resources {
@@ -365,7 +383,8 @@ android.applicationVariants.configureEach { variant ->
 
     if (buildType == "release" || buildType == "nightly" || buildType == "beta") {
         def baseVersionCode = generatedVersionCode
-        def versionName = buildType == "nightly" ? Config.nightlyVersionName() : Config.releaseVersionName(project)
+//        def versionName = buildType == "nightly" ? Config.nightlyVersionName() : Config.releaseVersionName(project)
+        def versionName = null
         println("versionName override: $versionName")
 
         // The Google Play Store does not allow multiple APKs for the same app that all have the

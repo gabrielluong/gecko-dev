@@ -36,9 +36,8 @@ object FocusVersions {
         const val junit = "5.9.3"
     }
 
-    object ThirdParty {
-        const val osslicenses_plugin = "0.10.4"
-    }
+
+    const val osslicenses_plugin = "0.10.4"
 }
 
 object FocusDependencies {
@@ -52,7 +51,7 @@ object FocusDependencies {
 
     const val adjust = "com.adjust.sdk:adjust-android:${FocusVersions.Adjust.adjust}"
     const val install_referrer = "com.android.installreferrer:installreferrer:${FocusVersions.Adjust.install_referrer}"
-    const val osslicenses_plugin = "com.google.android.gms:oss-licenses-plugin:${FocusVersions.ThirdParty.osslicenses_plugin}"
+    const val osslicenses_plugin = "com.google.android.gms:oss-licenses-plugin:${FocusVersions.osslicenses_plugin}"
 
     const val androidx_orchestrator = "androidx.test:orchestrator:${FocusVersions.Testing.androidx_orchestrator}"
     const val espresso_contrib = "androidx.test.espresso:espresso-contrib:${FocusVersions.Testing.androidx_espresso}"
