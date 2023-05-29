@@ -2,11 +2,15 @@ pluginManagement {
     includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/dependencies")
     includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/publicsuffixlist")
     includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/github")
+    includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/android-components/plugins/config")
+    includeBuild("${rootProject.projectDir.absolutePath}/mobile/android/focus-android/plugins/focusdependencies")
 }
 
 plugins {
+    id "mozac.ConfigPlugin"
     id 'mozac.DependenciesPlugin'
     id 'mozac.GitHubPlugin'
+    id 'FocusDependenciesPlugin'
 }
 
 // You might think topsrcdir is '.', but that's not true when the Gradle build
@@ -64,6 +68,8 @@ include ':test_runner'
 include ':exoplayer2'
 include ':android-components'
 include ':samples-browser'
+include ':service-telemetry'
+include ':focus-android'
 
 project(':annotations').projectDir = new File("${json.topsrcdir}/mobile/android/annotations")
 project(':geckoview').projectDir = new File("${json.topsrcdir}/mobile/android/geckoview")
@@ -72,6 +78,8 @@ project(':test_runner').projectDir = new File("${json.topsrcdir}/mobile/android/
 project(':exoplayer2').projectDir = new File("${json.topsrcdir}/mobile/android/exoplayer2")
 project(':android-components').projectDir = new File("${json.topsrcdir}/mobile/android/android-components")
 project(':samples-browser').projectDir = new File("${json.topsrcdir}/mobile/android/android-components/samples/browser")
+project(':service-telemetry').projectDir = new File("${json.topsrcdir}/mobile/android/focus-android/service-telemetry")
+project(':focus-android').projectDir = new File("${json.topsrcdir}/mobile/android/focus-android/app")
 
 if (hasProperty("androidFormatLintTest")) {
     include ':androidFormatLintTest'

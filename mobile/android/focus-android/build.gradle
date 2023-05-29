@@ -106,7 +106,7 @@ allprojects {
     }
 }
 
-tasks.register('clean', Delete) {
+tasks.register("focusClean", Delete) {
     delete rootProject.buildDir
 }
 
