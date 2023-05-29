@@ -56,6 +56,7 @@ public class TelemetryJobService extends JobService {
         }
     }
 
+    @SuppressWarnings("rawtypes")
     @VisibleForTesting public void uploadPingsInBackground(AsyncTask task, JobParameters parameters) {
         final Telemetry telemetry = TelemetryHolder.get();
         final TelemetryConfiguration configuration = telemetry.getConfiguration();

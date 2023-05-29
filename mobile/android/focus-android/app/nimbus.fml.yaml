@@ -8,6 +8,7 @@ channels:
   - nightly
   - beta
   - release
+  - withGeckoBinariesFocusDebug
 features:
   onboarding:
     description: Nimbus feature name intended to control the onboarding plus all CFRs in the app.
