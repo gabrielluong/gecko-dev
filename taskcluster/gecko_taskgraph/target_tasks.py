@@ -1476,3 +1476,18 @@ def target_tasks_snap_upstream_tests(full_task_graph, parameters, graph_config):
     for name, task in full_task_graph.tasks.items():
         if "snap-upstream-test" in name and not "-try" in name:
             yield name
+
+
+@_target_task("oak_tasks")
+def target_tasks_oak(full_task_graph, parameters, graph_config):
+    """Bug 1826838 - skip desktop tasks on oak while we focus on android"""
+    filtered_for_project = target_tasks_default(
+        full_task_graph, parameters, graph_config
+    )
+
+    def filter(task):
+        platform = task.attributes.get("build_platform", "")
+        return not platform.startswith(("linux", "win", "macos"))
+
+    return [l for l in filtered_for_project if filter(full_task_graph[l])]
+

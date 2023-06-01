@@ -70,7 +70,7 @@ PER_PROJECT_PARAMETERS = {
         "target_tasks_method": "holly_tasks",
     },
     "oak": {
-        "target_tasks_method": "default",
+        "target_tasks_method": "oak_tasks",
         "release_type": "nightly-oak",
     },
     "graphics": {
