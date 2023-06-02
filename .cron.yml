@@ -388,3 +388,11 @@ jobs:
           - mozilla-central
       when:
           - {hour: 0, minute: 0}
+
+    - name: nightly-android
+      job:
+          type: decision-task
+          treeherder-symbol: Na
+          target-tasks-method: nightly-android
+      run-on-projects: [oak]
+      when: []  # hook only
