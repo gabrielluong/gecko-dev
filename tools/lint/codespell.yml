@@ -66,6 +66,10 @@ codespell:
         - xpcom/docs/
     exclude:
         - devtools/docs/contributor/tools/storage/
+        - mobile/android/docs/Gemfile.lock
+        - mobile/android/docs/_config.yml
+        - mobile/android/docs/changelog_archive.md
+        - mobile/android/docs/shared/uplift_guide.md
         - tools/lint/cpp/mingw-headers.txt
         - tools/lint/test/test_codespell.py
         - "**/package-lock.json"
