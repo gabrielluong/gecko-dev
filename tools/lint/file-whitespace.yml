@@ -138,6 +138,20 @@ file-whitespace:
         - python/mozperftest/perfdocs/running.rst
         - python/mozperftest/perfdocs/vision.rst
         - python/mozperftest/perfdocs/writing.rst
+        # firefox-android migration
+        - mobile/android/android-components/components/browser/errorpages/README.md
+        - mobile/android/android-components/components/lib/crash/docs/metrics.md
+        - mobile/android/android-components/components/service/nimbus/docs/metrics.md
+        - mobile/android/android-components/components/support/license/src/test/resources/robolectric.properties
+        - mobile/android/android-components/samples/browser/src/androidTest/assets/index.html
+        - mobile/android/docs/contribute/merge_day.md
+        - mobile/android/docs/rfcs/0004-top-sites-feature.md
+        - mobile/android/fenix/app/src/androidTest/assets/pages/passwordsubmit.html
+        - mobile/android/fenix/docs/Acronym-dictionary.md
+        - mobile/android/fenix/docs/Guide-to-merging-contributor-PRs.md
+        - mobile/android/fenix/docs/Test-telemetry-pings.md
+        - mobile/android/fenix/docs/release-checklist.md
+        - mobile/android/fenix/docs/substituting-local-gv.md
     extensions:
         - .c
         - .cc
