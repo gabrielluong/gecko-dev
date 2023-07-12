@@ -9,8 +9,27 @@ kind.
 
 from taskgraph.transforms.base import TransformSequence
 from taskgraph.util.schema import resolve_keyed_by
+from voluptuous import Optional, Required, Schema
 
+from gecko_taskgraph.transforms.task import task_description_schema
+
+
+version_bump_description_schema = Schema(
+    {
+        Required("name"): str,
+        Required("worker"): task_description_schema["worker"],  # dict,
+        # treeherder is allowed here to override any defaults we use for beetmover.
+        Optional("treeherder"): task_description_schema["treeherder"],
+        Optional("attributes"): task_description_schema["attributes"],
+        Optional("dependencies"): task_description_schema["dependencies"],
+        Optional("shipping-phase"): task_description_schema["shipping-phase"],
+        Required("worker-type"): task_description_schema["worker-type"],
+        Required("description"): task_description_schema["description"],
+    }
+)
+ 
 transforms = TransformSequence()
+transforms.add_validate(version_bump_description_schema)
 
 
 @transforms.add
