@@ -57,7 +57,7 @@ android {
             minifyEnabled !project.hasProperty("disableOptimization")
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             matchingFallbacks = ['release']
-            buildConfigField "String", "GIT_HASH", "\"${Config.getGitHash()}\""
+            // buildConfigField "String", "GIT_HASH", "\"${Config.getGitHash()}\""
 
             if (gradle.hasProperty("localProperties.autosignReleaseWithDebugKey")) {
                 println ("All builds will be automatically signed with the debug key")

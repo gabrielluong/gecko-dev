@@ -41,7 +41,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
-            buildConfigField("String", "GIT_HASH", "\"" + getGitHash() + "\"")
+            // buildConfigField("String", "GIT_HASH", "\"" + getGitHash() + "\"")
         }
     }
 
