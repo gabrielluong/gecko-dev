@@ -56,12 +56,12 @@ def resolve_keys(config, tasks):
         yield task
 
 
-@transforms.add
-def build_worker_definition(config, tasks):
-    for task in tasks:
-        worker_definition = {
-            "branch": config.params["head_ref"],
-        }
-        task["worker"].update(worker_definition)
-
-        yield task
+#@transforms.add
+#def build_worker_definition(config, tasks):
+#    for task in tasks:
+#        worker_definition = {
+#            "branch": config.params["head_ref"],
+#        }
+#        task["worker"].update(worker_definition)
+#
+#        yield task
