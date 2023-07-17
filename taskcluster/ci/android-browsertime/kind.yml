@@ -1,14 +1,16 @@
 ---
-loader: taskgraph.loader.transform:loader
+loader: gecko_taskgraph.loader.transform:loader
 transforms:
     - android_taskgraph.transforms.browsertime:transforms
     - android_taskgraph.transforms.notify:transforms
-    - taskgraph.transforms.job:transforms
-    - taskgraph.transforms.task:transforms
+    - gecko_taskgraph.transforms.job:transforms
+    - gecko_taskgraph.transforms.task:transforms
 
 kind-dependencies:
     - signing-apk
     - toolchain
+    - fetch
+    - build
 
 primary-dependency: signing-apk
 
@@ -18,12 +20,12 @@ only-for-build-types:
 only-for-abis:
     - arm64-v8a
 
-task-defaults:
+job-defaults:
     attributes:
         artifact_prefix: public/test_info
         nightly-test: true
     dependencies:
-        geckoview-nightly: geckoview-nightly
+        geckoview-nightly: build-android-x86_64-shippable/opt
     notify:
         by-level:
             '3':
@@ -36,13 +38,12 @@ task-defaults:
                     subject: '[{product_name}] Raptor-Browsertime job "{task_name}" failed'
                     to-addresses: [perftest-alerts@mozilla.com]
             default: {}
-    run-on-tasks-for: []
     treeherder:
         kind: test
         tier: 2
         platform:
             by-abi:
-                arm64-v8a: android-hw-a51-11-0-aarch64-shippable-qr/opt
+                arm64-v8a: fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt
     worker-type:
         by-abi:
             arm64-v8a: t-bitbar-gw-perf-a51
@@ -86,18 +87,19 @@ task-defaults:
             - '--download-symbols=ondemand'
             - '--browsertime-node=$MOZ_FETCHES_DIR/node/bin/node'
             - '--browsertime-geckodriver=$MOZ_FETCHES_DIR/geckodriver'
-            - '--browsertime-ffmpeg=$MOZ_FETCHES_DIR/ffmpeg-4.1.4-i686-static/bin/ffmpeg'
+            - '--browsertime-ffmpeg=$MOZ_FETCHES_DIR/ffmpeg-4.4.1-i686-static/bin/ffmpeg'
             - '--browsertime-browsertimejs=$MOZ_FETCHES_DIR/browsertime/node_modules/browsertime/bin/browsertime.js'
             - '--conditioned-profile=settled'
     fetches:
+        fetch:
+            - linux64-ffmpeg-4.4.1
         toolchain:
             - browsertime
-            - linux64-ffmpeg-4.1.4
             - linux64-geckodriver
             - linux64-minidump-stackwalk
             - linux64-node-16
 
-tasks:
+jobs:
     tp6m:
         run-with-fission: False # Bug 1816421 disable fission perf tests
         page-load-tests:
