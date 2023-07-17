@@ -654,6 +654,10 @@ post-beetmover-checksums-dummy
 ------------------------------
 Dummy tasks to consolidate beetmover-checksums dependencies to avoid taskcluster limits on number of dependencies per task.
 
+post-beetmover-components-dummy
+-------------------------------
+Dummy tasks to consolidate beetmover-components dependencies to avoid taskcluster limits on number of dependencies per task.
+
 post-langpack-dummy
 -------------------
 Dummy tasks to consolidate language pack beetmover dependencies to avoid taskcluster limits on number of dependencies per task.
@@ -802,3 +806,67 @@ Perform a Firefox Snap build using upstream tooling
 snap-upstream-test
 -------------------
 Test a Firefox Snap built using upstream tooling
+
+external-gradle-dependencies
+----------------------------
+External Gradle dependencies toolchain task.
+
+build-components
+----------------
+Build android-components.
+
+build-apk
+---------
+Build Focus, Klar, and Fenix apks.
+
+build-samples-browser
+---------------------
+Build android samples browser.
+
+signing
+-------
+Sign android-components.
+
+signing-apk
+-----------
+Sign Focus, Klar, and Fenix apks.
+
+test-components
+---------------
+Test android-components
+
+test-apk
+--------
+Test Focus, Klar, and Fenix apks.
+
+ui-test-apk
+-----------
+User interface tests for Focus, Klar, and Fenix apks.
+
+android-browsertime
+-------------------
+Browsertime tests for android.
+
+android-startup-test
+--------------------
+Startup test for android.
+
+post-signing
+------------
+Gating kind to wait for all android signing tasks.
+
+beetmover-components
+--------------------
+A beetmover task for android components.
+
+beetmover-android-app
+---------------------
+A beetmover task for android APKs and AABs.
+
+push-apk
+--------
+Push Focus and Fenix apks to Google Play.
+
+version-bump
+------------
+Version bump for mobile/android/version.txt.
