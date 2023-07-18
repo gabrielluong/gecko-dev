@@ -18,6 +18,7 @@ version_bump_description_schema = Schema(
     {
         Required("name"): str,
         Required("worker"): task_description_schema["worker"],  # dict,
+        Optional("job-from"): str,
         # treeherder is allowed here to override any defaults we use for beetmover.
         Optional("treeherder"): task_description_schema["treeherder"],
         Optional("attributes"): task_description_schema["attributes"],
