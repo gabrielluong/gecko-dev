@@ -98,7 +98,7 @@ def make_task_worker(config, tasks):
 
         task["worker"].update(
             {
-                # "implementation": "beetmover",
+                "implementation": "beetmover",
                 "release-properties": craft_release_properties(config, task),
                 "artifact-map": generate_beetmover_artifact_map(
                     config, task, platform=build_type, locale=locale
