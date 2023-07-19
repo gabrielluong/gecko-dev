@@ -42,6 +42,6 @@ jobs:
             by-level:
                 '3':
                     by-build-type:
-                        .*-nightly: "project:mobile:firefox-android:releng:beetmover:bucket:nightly"
-                        .*-(release|beta): "project:mobile:firefox-android:releng:beetmover:bucket:release"
-                default: "project:mobile:firefox-android:releng:beetmover:bucket:dep"
+                        .*-nightly: "project:releng:beetmover:bucket:nightly"
+                        .*-(release|beta): "project:releng:beetmover:bucket:release"
+                default: "project:releng:beetmover:bucket:dep"
