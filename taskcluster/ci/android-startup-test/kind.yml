@@ -2,21 +2,21 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ---
-loader: taskgraph.loader.transform:loader
+loader: gecko_taskgraph.loader.transform:loader
 
 transforms:
-    - taskgraph.transforms.job:transforms
-    - taskgraph.transforms.task:transforms
+    - gecko_taskgraph.transforms.job:transforms
+    - gecko_taskgraph.transforms.task:transforms
 
-task-defaults:
+job-defaults:
     description: Runs UI tests for sanity checking startup on Nightly
     treeherder:
         kind: test
         platform: 'nightly-start-test/opt'
         tier: 1
-    worker-type: b-android
+    worker-type: b-linux-gcp
     worker:
-        docker-image: {in-tree: ui-tests}
+        docker-image: {in-tree: android-ui-tests}
         max-run-time: 7200
         env:
             GOOGLE_APPLICATION_CREDENTIALS: '.firebase_token.json'
@@ -27,9 +27,8 @@ task-defaults:
     run:
         using: run-commands
         use-caches: false
-    run-on-tasks-for: []
 
-tasks:
+jobs:
     fenix-arm-nightly:
         attributes:
             build-type: fenix-nightly-firebase
@@ -44,7 +43,7 @@ tasks:
                   path: .firebase_token.json
                   json: true
             pre-commands:
-                - ["cd", "fenix"]
+                - ["cd", "mobile/android/fenix"]
             commands:
                 - [wget, {artifact-reference: '<signing/public/build/target.arm64-v8a.apk>'}, '-O', app.apk]
                 - [wget, {artifact-reference: '<signing-android-test/public/build/target.noarch.apk>'}, '-O', android-test.apk]
@@ -68,7 +67,7 @@ tasks:
                   path: .firebase_token.json
                   json: true
             pre-commands:
-                - ["cd", "focus-android"]
+                - ["cd", "mobile/android/focus-android"]
             commands:
                 - [wget, {artifact-reference: '<signed-apk-debug-apk/public/build/target.arm64-v8a.apk>'}, '-O', app.apk]
                 - [wget, {artifact-reference: '<signed-apk-android-test/public/build/target.noarch.apk>'}, '-O', android-test.apk]
