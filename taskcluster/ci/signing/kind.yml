@@ -2,19 +2,19 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 ---
-loader: taskgraph.loader.transform:loader
+loader: gecko_taskgraph.loader.transform:loader
 
 transforms:
     - taskgraph.transforms.from_deps
     - android_taskgraph.transforms.upstream_artifacts
     - android_taskgraph.transforms.signing
     - android_taskgraph.transforms.treeherder
-    - taskgraph.transforms.task
+    - gecko_taskgraph.transforms.task
 
 kind-dependencies:
     - build-components
 
-tasks:
+jobs:
     sign-build:
         description: Sign component
         from-deps:
@@ -25,14 +25,13 @@ tasks:
                     - nightly
             group-by: component
             copy-attributes: true
-        index:
-            by-build-type:
-                (release|beta|nightly):
-                    type: signing
-                default: {}
-        run-on-tasks-for: []
+        # index:
+        #     by-build-type:
+        #         (release|beta|nightly):
+        #             type: signing
+        #         default: {}
         treeherder:
-            job-symbol:
+            symbol:
                 by-build-type:
                     release: BRs
                     beta: BBs
@@ -41,10 +40,7 @@ tasks:
             kind: build
         worker-type:
             by-level:
-                '3': signing
-                default: dep-signing
+                '3': mobile-signing
+                default: mobile-dep-signing
         worker:
-            signing-type:
-                by-level:
-                    '3': release-signing
-                    default: dep-signing
+            implementation: scriptworker-signing
