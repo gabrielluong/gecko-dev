@@ -5,12 +5,17 @@ plugins {
     id "com.google.protobuf" version "$protobuf_plugin"
 }
 
+buildDir "${topobjdir}/gradle/build/mobile/android/fenix"
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'jacoco'
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+
+apply from: "$project.rootDir/mobile/android/focus-android/tools/gradle/versionCode.gradle"
+apply from: "${topsrcdir}/mobile/android/gradle/product_flavors.gradle"
 
 import com.android.build.OutputFile
 import groovy.json.JsonOutput
@@ -185,9 +190,12 @@ android {
         animationsDisabled = true
     }
 
-    flavorDimensions "engine"
+    project.configureProductFlavors.delegate = it
+    project.configureProductFlavors()
 
-    flavorDimensions "product"
+//    flavorDimensions += "engine"
+
+    flavorDimensions += "product"
 
     productFlavors {
         fenix {
@@ -274,7 +282,7 @@ android.applicationVariants.all { variant ->
         // same version code. Therefore we need to have different version codes for our ARM and x86
         // builds.
 
-        def versionName = variant.buildType.name == 'nightly' ? Config.nightlyVersionName() : Config.releaseVersionName(project)
+        def versionName = null
         println("versionName override: $versionName")
 
         variant.outputs.each { output ->
@@ -858,4 +866,4 @@ android.applicationVariants.all { variant ->
 }
 
 // Enable expiration by major version.
-ext.gleanExpireByVersion = Config.majorVersion()
+ext.gleanExpireByVersion = 118

@@ -34,7 +34,8 @@ object Config {
         // ergonomically validate (sometimes IDEs default to a release variant and mysteriously fail due to the
         // validation, sometimes devs just need a release build and specifying project properties is annoying in IDEs),
         // so instead we'll allow the `versionName` to silently default to an empty string.
-        return if (project.hasProperty("versionName")) project.property("versionName") as String else null
+//        return if (project.hasProperty("versionName")) project.property("versionName") as String else null
+        return null
     }
 
     @JvmStatic
@@ -45,7 +46,7 @@ object Config {
 
     @JvmStatic
     fun readVersionFromFile(): String {
-        return File("../version.txt").useLines { it.firstOrNull() ?: "" }
+        return File("../mobile/android/version.txt").useLines { it.firstOrNull() ?: "" }
     }
 
     @JvmStatic
