@@ -45,7 +45,9 @@ def setupProject(name, path, description) {
 
     def projectPath = "/mobile/android/android-components/${path}"
     if (rootDir.toString().endsWith("android-components") ||
-            rootDir.toString().endsWith("focus-android")) {
+            rootDir.toString().endsWith("focus-android") ||
+            rootDir.toString().endsWith("fenix")
+    ) {
         projectPath = "../android-components/${path}"
     }
 
@@ -79,7 +81,9 @@ def getManifestVersionString(componentsVersion) {
 
 def buildConfigPath = '/mobile/android/android-components/.buildconfig.yml'
 if (rootDir.toString().endsWith("android-components") ||
-        rootDir.toString().endsWith("focus-android")) {
+        rootDir.toString().endsWith("focus-android") ||
+        rootDir.toString().endsWith("fenix")
+) {
     buildConfigPath = '../android-components/.buildconfig.yml'
 }
 
@@ -99,7 +103,9 @@ gradle.projectsLoaded { ->
     def configPath = '/mobile/android/android-components/.config.yml'
 
     if (rootDir.toString().endsWith("android-components") ||
-            rootDir.toString().endsWith("focus-android")) {
+            rootDir.toString().endsWith("focus-android") ||
+            rootDir.toString().endsWith("fenix")
+    ) {
         versionPath = '../version.txt'
         configPath = '../android-components/.config.yml'
     }
