@@ -1008,6 +1008,7 @@ package org.mozilla.geckoview {
     method @UiThread public void setScrollDelegate(@Nullable GeckoSession.ScrollDelegate);
     method @UiThread public void setSelectionActionDelegate(@Nullable GeckoSession.SelectionActionDelegate);
     method @AnyThread public void stop();
+    method @AnyThread public void translatePage(@NonNull String, @NonNull String);
     method @UiThread protected void setShouldPinOnScreen(boolean);
     field public static final int FINDER_DISPLAY_DIM_PAGE = 2;
     field public static final int FINDER_DISPLAY_DRAW_LINK_OUTLINE = 4;
@@ -1049,6 +1050,7 @@ package org.mozilla.geckoview {
     method @AnyThread @Deprecated @DeprecationSchedule(version=122,id="session-nimbus") @Nullable default public JSONObject onGetNimbusFeature(@NonNull GeckoSession, @NonNull String);
     method @UiThread default public void onKill(@NonNull GeckoSession);
     method @UiThread default public void onMetaViewportFitChange(@NonNull GeckoSession, @NonNull String);
+    method @UiThread default public void onOfferTranslation(@NonNull GeckoSession);
     method @UiThread default public void onPaintStatusReset(@NonNull GeckoSession);
     method @UiThread default public void onPointerIconChange(@NonNull GeckoSession, @NonNull PointerIcon);
     method @UiThread default public void onPreviewImage(@NonNull GeckoSession, @NonNull String);
@@ -1056,6 +1058,7 @@ package org.mozilla.geckoview {
     method @UiThread default public void onShowDynamicToolbar(@NonNull GeckoSession);
     method @Nullable @UiThread default public GeckoResult<SlowScriptResponse> onSlowScript(@NonNull GeckoSession, @NonNull String);
     method @UiThread default public void onTitleChange(@NonNull GeckoSession, @Nullable String);
+    method @UiThread default public void onTranslationsLanguageState(@NonNull GeckoSession, @NonNull JSONObject);
     method @UiThread default public void onWebAppManifest(@NonNull GeckoSession, @NonNull JSONObject);
   }
 

@@ -69,6 +69,10 @@ pref("signon.debug", false);
 pref("signon.showAutoCompleteFooter", true);
 pref("toolkit.autocomplete.delegate", true);
 
+// Enable Firefox translations powered by the Bergamot translations
+// engine https://browser.mt/.
+pref("browser.translations.enable", true);
+
 // Android doesn't support the new sync storage yet, we will have our own in
 // Bug 1625257.
 pref("webextensions.storage.sync.kinto", true);

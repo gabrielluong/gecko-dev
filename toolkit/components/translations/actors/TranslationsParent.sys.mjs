@@ -391,14 +391,14 @@ export class TranslationsParent extends JSWindowActorParent {
       // do not offer a translation.
       return;
     }
-    if (TranslationsParent.#hostsOffered.has(host)) {
-      // This host was already offered a translation.
-      lazy.console.log(
-        "maybeOfferTranslations - Host already offered a translation, so skip.",
-        documentURI.spec
-      );
-      return;
-    }
+    // if (TranslationsParent.#hostsOffered.has(host)) {
+    //   // This host was already offered a translation.
+    //   lazy.console.log(
+    //     "maybeOfferTranslations - Host already offered a translation, so skip.",
+    //     documentURI.spec
+    //   );
+    //   return;
+    // }
     const browser = this.browsingContext.top.embedderElement;
     if (!browser) {
       return;
@@ -426,23 +426,23 @@ export class TranslationsParent extends JSWindowActorParent {
     }
 
     // Only offer the translation if it's still the current page.
-    if (
-      documentURI.spec ===
-      this.browsingContext.topChromeWindow.gBrowser.selectedBrowser.documentURI
-        .spec
-    ) {
-      lazy.console.log(
-        "maybeOfferTranslations - Offering a translation",
-        documentURI.spec,
-        detectedLanguages
-      );
+    // if (
+    //   documentURI.spec ===
+    //   this.browsingContext.topChromeWindow.gBrowser.selectedBrowser.documentURI
+    //     .spec
+    // ) {
+    lazy.console.log(
+      "maybeOfferTranslations - Offering a translation",
+      documentURI.spec,
+      detectedLanguages
+    );
 
-      browser.dispatchEvent(
-        new CustomEvent("TranslationsParent:OfferTranslation", {
-          bubbles: true,
-        })
-      );
-    }
+    browser.dispatchEvent(
+      new CustomEvent("TranslationsParent:OfferTranslation", {
+        bubbles: true,
+      })
+    );
+    // }
   }
 
   /**
@@ -2376,10 +2376,10 @@ class TranslationsLanguageState {
    * Dispatch anytime the language details change, so that any UI can react to it.
    */
   dispatch() {
-    if (!TranslationsParent.isActiveLocation(this.#locationChangeId)) {
-      // Do not dispatch as this location is not active.
-      return;
-    }
+    // if (!TranslationsParent.isActiveLocation(this.#locationChangeId)) {
+    //   // Do not dispatch as this location is not active.
+    //   return;
+    // }
 
     const browser = this.#actor.browsingContext.top.embedderElement;
     if (!browser) {

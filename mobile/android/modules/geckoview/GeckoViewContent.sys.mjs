@@ -31,6 +31,7 @@ export class GeckoViewContent extends GeckoViewModule {
       "GeckoView:UpdateInitData",
       "GeckoView:ZoomToInput",
       "GeckoView:IsPdfJs",
+      "GeckoView:TranslatePage",
     ]);
   }
 
@@ -61,6 +62,9 @@ export class GeckoViewContent extends GeckoViewModule {
     this.window.addEventListener("cookiebannerdetected", this);
     this.window.addEventListener("cookiebannerhandled", this);
 
+    this.window.addEventListener("TranslationsParent:OfferTranslation", this);
+    this.window.addEventListener("TranslationsParent:LanguageState", this);
+
     Services.obs.addObserver(this, "oop-frameloader-crashed");
     Services.obs.addObserver(this, "ipc:content-shutdown");
   }
@@ -88,6 +92,9 @@ export class GeckoViewContent extends GeckoViewModule {
 
     this.window.removeEventListener("cookiebannerdetected", this);
     this.window.removeEventListener("cookiebannerhandled", this);
+
+    this.window.removeEventListener("TranslationsParent:OfferTranslation", this);
+    this.window.removeEventListener("TranslationsParent:LanguageState", this);
 
     Services.obs.removeObserver(this, "oop-frameloader-crashed");
     Services.obs.removeObserver(this, "ipc:content-shutdown");
@@ -205,6 +212,9 @@ export class GeckoViewContent extends GeckoViewModule {
       case "GeckoView:HasCookieBannerRuleForBrowsingContextTree":
         this._hasCookieBannerRuleForBrowsingContextTree(aCallback);
         break;
+      case "GeckoView:TranslatePage":
+        this._translatePage(aData);
+        break;
     }
   }
 
@@ -268,6 +278,21 @@ export class GeckoViewContent extends GeckoViewModule {
           type: "GeckoView:CookieBannerEvent:Handled",
         });
         break;
+      case "TranslationsParent:OfferTranslation":
+        this.eventDispatcher.sendRequest({
+          type: "GeckoView:OfferTranslation",
+        });
+        break;
+        case "TranslationsParent:LanguageState":
+          this.eventDispatcher.sendRequest({
+            type: "GeckoView:LanguageState",
+            detail: aEvent.detail,
+            // detectedLanguages: aEvent.detail.detectedLanguages,
+            // requestedTranslationPair: aEvent.detail.requestedTranslationPair,
+            // error: aEvent.detail.error,
+            // isEngineReady: aEvent.detail.isEngineReady,
+          });
+          break;
     }
   }
 
@@ -358,6 +383,13 @@ export class GeckoViewContent extends GeckoViewModule {
     aCallback.onSuccess(
       Services.cookieBanners.hasRuleForBrowsingContextTree(browsingContext)
     );
+  }
+
+  async _translatePage(aData) {
+    debug`translatePage: data=${aData}"}`;
+
+    const { fromLanguage, toLanguage } = aData;
+    this.getActor("Translations").translate(fromLanguage, toLanguage);
   }
 
   _findInPage(aData, aCallback) {

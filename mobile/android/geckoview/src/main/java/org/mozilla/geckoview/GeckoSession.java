@@ -530,6 +530,8 @@ public class GeckoSession {
             "GeckoView:SavePdf",
             "GeckoView:GetNimbusFeature",
             "GeckoView:OnProductUrl",
+            "GeckoView:OfferTranslation",
+            "GeckoView:LanguageState",
           }) {
         @Override
         public void handleMessage(
@@ -630,6 +632,19 @@ public class GeckoSession {
             }
           } else if ("GeckoView:OnProductUrl".equals(event)) {
             delegate.onProductUrl(GeckoSession.this);
+          } else if ("GeckoView:OfferTranslation".equals(event)) {
+            delegate.onOfferTranslation(GeckoSession.this);
+          } else if ("GeckoView:LanguageState".equals(event)) {
+            final GeckoBundle detail = message.getBundle("detail");
+            if (detail == null) {
+              return;
+            }
+
+            try {
+              delegate.onTranslationsLanguageState(GeckoSession.this, detail.toJSONObject());
+            } catch (final JSONException e) {
+              Log.e(LOGTAG, "Failed to language state detail to JSON", e);
+            }
           }
         }
       };
@@ -3033,6 +3048,20 @@ public class GeckoSession {
             });
   }
 
+  /**
+   * TODO
+   *
+   * @param fromLanguage
+   * @param toLanguage
+   */
+  @AnyThread
+  public void translatePage(@NonNull final String fromLanguage, @NonNull final String toLanguage) {
+    final GeckoBundle bundle = new GeckoBundle(2);
+    bundle.putString("fromLanguage", fromLanguage);
+    bundle.putString("toLanguage", toLanguage);
+    mEventDispatcher.dispatch("GeckoView:TranslatePage", bundle);
+  }
+
   // This is the GeckoDisplay acquired via acquireDisplay(), if any.
   private GeckoDisplay mDisplay;
 
@@ -3997,6 +4026,24 @@ public class GeckoSession {
      */
     @AnyThread
     default void onCookieBannerHandled(@NonNull final GeckoSession session) {}
+
+    /**
+     * This method is called when a translations can be offered.
+     *
+     * @param session GeckoSession that initiated the callback.
+     */
+    @UiThread
+    default void onOfferTranslation(@NonNull final GeckoSession session) {}
+
+    /**
+     * This is fired when the loaded document has a valid Web App Manifest present.
+     *
+     * @param session The GeckoSession that initiated the callback.
+     * @param detail {@link JSONObject} containing the translations language state.
+     */
+    @UiThread
+    default void onTranslationsLanguageState(
+        @NonNull final GeckoSession session, @NonNull final JSONObject detail) {}
 
     /**
      * This method is scheduled for deprecation, see Bug 1846074 for details. Please switch to the
