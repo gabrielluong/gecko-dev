@@ -6,12 +6,13 @@ import os
 import re
 from subprocess import CalledProcessError
 
-from android_taskgraph.release_type import does_task_match_release_type
 from mozilla_version.maven import MavenVersion
 from redo import retry
 from taskgraph.target_tasks import _target_task, target_tasks_default
 from taskgraph.util.taskcluster import find_task_id
 from taskgraph.util.vcs import get_repository
+
+from android_taskgraph.release_type import does_task_match_release_type
 
 
 def index_exists(index_path, reason=""):
