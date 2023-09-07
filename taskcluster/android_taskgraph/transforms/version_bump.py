@@ -28,7 +28,7 @@ version_bump_description_schema = Schema(
         Required("description"): task_description_schema["description"],
     }
 )
- 
+
 transforms = TransformSequence()
 transforms.add_validate(version_bump_description_schema)
 
@@ -57,8 +57,8 @@ def resolve_keys(config, tasks):
         yield task
 
 
-#@transforms.add
-#def build_worker_definition(config, tasks):
+# @transforms.add
+# def build_worker_definition(config, tasks):
 #    for task in tasks:
 #        worker_definition = {
 #            "branch": config.params["head_ref"],
