@@ -7,12 +7,10 @@ kind.
 """
 
 
+from gecko_taskgraph.transforms.task import task_description_schema
 from taskgraph.transforms.base import TransformSequence
 from taskgraph.util.schema import resolve_keyed_by
 from voluptuous import Optional, Required, Schema
-
-from gecko_taskgraph.transforms.task import task_description_schema
-
 
 version_bump_description_schema = Schema(
     {
