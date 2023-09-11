@@ -831,6 +831,10 @@ signing
 -------
 Sign android-components.
 
+signing-bundle
+--------------
+Sign Focus, Klar, and Fenix android app bundles.
+
 signing-apk
 -----------
 Sign Focus, Klar, and Fenix apks.
