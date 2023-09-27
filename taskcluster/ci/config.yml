@@ -434,6 +434,7 @@ release-promotion:
         - 'devedition'
         - 'fennec'
         - 'firefox'
+        - 'firefox-android'
     rebuild-kinds:
         - docker-image
         - fetch
@@ -494,6 +495,15 @@ release-promotion:
             is-rc: true
             target-tasks-method: ship_desktop
             partial-updates: true
+        promote_android:
+            product: firefox-android
+            target-tasks-method: promote_android
+        push_android:
+            product: firefox-android
+            target-tasks-method: push_android
+        ship_android:
+            product: firefox-android
+            target-tasks-method: ship_android
 
 
 merge-automation:
