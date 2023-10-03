@@ -874,7 +874,3 @@ A beetmover task for android APKs and AABs.
 push-apk
 --------
 Push Focus and Fenix apks to Google Play.
-
-version-bump
-------------
-Version bump for mobile/android/version.txt.
