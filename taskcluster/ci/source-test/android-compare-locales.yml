@@ -16,6 +16,7 @@ job-defaults:
     worker:
         docker-image: {in-tree: lint}
         max-run-time: 1800
+    use-system-python: true
 
 
 compare-locales-android-components:
