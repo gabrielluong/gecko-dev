@@ -63,8 +63,11 @@ dependencies {
 
     if (gradle.hasProperty("localProperties.useLocalGeckoView")) {
         api project(':geckoview')
-    } else {
+    } else if (gradle.hasProperty("localProperties.useGeckoViewFromMaven"))  {
         api ComponentsDependencies.mozilla_geckoview
+    } else {
+        api fileTree(dir: '../../../libs', include: ['*.aar', '*.jar'], exclude: [])
+//        api fileTree(dir: gradle.getProperty("localProperties.geckoViewDir"), include: ['*.aar', '*.jar'], exclude: [])
     }
 
     implementation ComponentsDependencies.androidx_paging
