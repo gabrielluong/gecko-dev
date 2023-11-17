@@ -25,6 +25,7 @@ job-defaults:
     fetches:
         toolchain:
             - linux64-jdk-repack
+    use-system-python: true
 
 
 buildconfig-android-components:
