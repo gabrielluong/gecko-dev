@@ -161,6 +161,15 @@ export class GeckoViewStartup {
           lazy.ActorManagerParent.addJSWindowActors(JSWINDOWACTORS);
           lazy.ActorManagerParent.addJSProcessActors(JSPROCESSACTORS);
 
+          Services.obs.addObserver(function (subject, topic, data) {
+            let channel = subject.QueryInterface(Ci.nsIHttpChannel);
+            debug`GeckoViewStartup channel.URI.host: ${channel.URI.host}`;
+            if (channel.URI.host.endsWith(".google.com")) {
+              debug`GeckoViewStartup setRequestHeader`;
+              channel.setRequestHeader("X-Search-Subdivision", "1", true);
+            }
+          }, "http-on-modify-request");
+
           if (Services.appinfo.sessionHistoryInParent) {
             GeckoViewUtils.addLazyGetter(this, "GeckoViewSessionStore", {
               module: "resource://gre/modules/GeckoViewSessionStore.sys.mjs",
