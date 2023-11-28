@@ -874,3 +874,7 @@ A beetmover task for android APKs and AABs.
 push-apk
 --------
 Push Focus and Fenix apks to Google Play.
+
+android-l10n
+------------
+Update android string resources from android-l10n repo.
