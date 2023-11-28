@@ -239,6 +239,8 @@ treeherder:
         'Boot': 'Bootstrap'
         'Attr-L10n': 'Build Attribution'
 
+        android-l10n: Import strings from android-l10n repo
+
         buildconfig: Make sure the content of .buildconfig.yml matches what gradle knows about its projects
         compare-locales: Validate strings.xml with compare-locales
         detekt: detekt linter
