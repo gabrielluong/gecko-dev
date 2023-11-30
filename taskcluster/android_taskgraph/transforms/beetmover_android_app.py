@@ -64,7 +64,7 @@ def make_task_description(config, tasks):
             "worker": task["worker"],
             "scopes": [
                 bucket_scope,
-                "project:mobile:firefox-android:releng:beetmover:action:direct-push-to-bucket",
+                "project:releng:beetmover:action:direct-push-to-bucket",
             ],
             "dependencies": task["dependencies"],
             "attributes": attributes,
@@ -98,7 +98,7 @@ def make_task_worker(config, tasks):
 
         task["worker"].update(
             {
-                # "implementation": "beetmover",
+                "implementation": "beetmover",
                 "release-properties": craft_release_properties(config, task),
                 "artifact-map": generate_beetmover_artifact_map(
                     config, task, platform=build_type, locale=locale
