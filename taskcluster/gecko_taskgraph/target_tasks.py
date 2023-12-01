@@ -1480,14 +1480,20 @@ def target_tasks_snap_upstream_tests(full_task_graph, parameters, graph_config):
 
 @_target_task("oak_tasks")
 def target_tasks_oak(full_task_graph, parameters, graph_config):
-    """Bug 1826838 - skip desktop tasks on oak while we focus on android"""
+    """
+    Bug 1826838 - skip desktop tasks on oak while we focus on android
+    Bug 1867800 - skip android-browsertime
+    """
     filtered_for_project = target_tasks_default(
         full_task_graph, parameters, graph_config
     )
 
     def filter(task):
         platform = task.attributes.get("build_platform", "")
-        return not platform.startswith(("linux", "win", "macos"))
+        return (
+            not platform.startswith(("linux", "win", "macos"))
+            and task.kind != "android-browsertime"
+        )
 
     return [l for l in filtered_for_project if filter(full_task_graph[l])]
 
