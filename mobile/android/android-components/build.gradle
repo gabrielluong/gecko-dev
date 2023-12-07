@@ -278,8 +278,11 @@ subprojects {
     }
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+if (findProject(":geckoview") == null) {
+    // Avoid adding this task if it already exists in a different root project.
+    tasks.register("clean", Delete) {
+        delete rootProject.buildDir
+    }
 }
 
 detekt {
