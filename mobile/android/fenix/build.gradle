@@ -7,6 +7,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 buildscript {
     // This logic is duplicated in the allprojects block: I don't know how to fix that.
     repositories {
+        if (!System.env.MOZ_AUTOMATION && gradle.mozconfig.substs.MOZ_ARTIFACT_BUILDS) {
+            mavenLocal()
+        }
+
         maven {
             name "Mozilla Nightly"
             url "https://nightly.maven.mozilla.org/maven2"
@@ -102,6 +106,10 @@ plugins {
 allprojects {
     // This logic is duplicated in the buildscript block: I don't know how to fix that.
     repositories {
+        if (!System.env.MOZ_AUTOMATION && gradle.mozconfig.substs.MOZ_ARTIFACT_BUILDS) {
+            mavenLocal()
+        }
+
         maven {
             name "Mozilla Nightly"
             url "https://nightly.maven.mozilla.org/maven2"
