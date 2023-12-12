@@ -2,6 +2,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+import groovy.json.JsonSlurper
 import org.yaml.snakeyaml.Yaml
 
 buildscript {
@@ -29,15 +30,6 @@ def standardError = new ByteArrayOutputStream()
 proc.consumeProcessOutput(standardOutput, standardError)
 proc.waitFor()
 
-import groovy.json.JsonSlurper
-
-def slurper = new JsonSlurper()
-def json = slurper.parseText(standardOutput.toString())
-
-if (json.substs.MOZ_BUILD_APP != 'mobile/android') {
-    throw new GradleException("Building with Gradle is only supported for Fennec, i.e., MOZ_BUILD_APP == 'mobile/android'.")
-}
-
 // Only show the output if something went wrong.
 if (proc.exitValue() != 0) {
     logger.info("Error running ./mach environment: \n\n"
@@ -48,6 +40,13 @@ if (proc.exitValue() != 0) {
             + "${standardError.toString()}")
     throw new StopExecutionException(
             "Could not run ./mach environment. Try running ./mach build first.")
+}
+
+def slurper = new JsonSlurper()
+def json = slurper.parseText(standardOutput.toString())
+
+if (json.substs.MOZ_BUILD_APP != 'mobile/android') {
+    throw new GradleException("Building with Gradle is only supported for Fennec, i.e., MOZ_BUILD_APP == 'mobile/android'.")
 }
 
 // The Gradle instance is shared between settings.gradle and all the
