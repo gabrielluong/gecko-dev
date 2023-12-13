@@ -62,7 +62,7 @@ dependencies {
     implementation ComponentsDependencies.kotlin_coroutines
 
     if (System.env.MOZ_AUTOMATION) {
-        rootProject.logger.lifecycle("Getting geckoview in MOZ_AUTOMATION getArtifactId=${getArtifactId} mozconfig=${gradle.mozconfig}")
+        rootProject.logger.lifecycle("Getting geckoview in MOZ_AUTOMATION getArtifactId=${getArtifactId()} mozconfig=${gradle.mozconfig}")
         api "org.mozilla.geckoview:${getArtifactId()}:+"
     } else if (findProject(":geckoview") != null) {
         api project(':geckoview')
@@ -166,7 +166,7 @@ def getArtifactId() {
         // one target architecture masquerading as a "fat AAR"
         // to enable Gradle composite builds to substitute this
         // project into consumers easily.
-        id += "-${substs.ANDROID_CPU_ARCH}"
+        id += "-${gradle.mozconfig.substs.ANDROID_CPU_ARCH}"
     }
 
     return id
