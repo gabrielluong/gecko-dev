@@ -6,6 +6,7 @@ import argparse
 import logging
 import os
 import sys
+import tarfile
 
 import mozpack.path as mozpath
 from mach.decorators import Command, CommandArgument, SubCommand
@@ -190,7 +191,12 @@ def android_archive_geckoview(command_context, args):
         verbose=True,
     )
 
-    return ret
+    if ret != 0:
+        return ret
+
+    create_maven_zip_archive(command_context.topobjdir)
+
+    return 0
 
 
 @SubCommand("android", "build-geckoview_example", """Build geckoview_example """)
@@ -220,6 +226,23 @@ def android_compile_all(command_context, args):
     )
 
     return 0
+
+
+def get_maven_archive_paths(maven_folder):
+    for subdir, _, files in os.walk(maven_folder):
+        for file in files:
+            yield os.path.join(subdir, file)
+
+
+def create_maven_zip_archive(topobjdir):
+    gradle_folder = os.path.join(topobjdir, "gradle")
+    maven_folder = os.path.join(gradle_folder, "maven")
+
+    with tarfile.open(
+        os.path.join(gradle_folder, "target.maven.tar.gz"), "w|gz"
+    ) as tar:
+        for abs_path in get_maven_archive_paths(maven_folder):
+            tar.add(abs_path, arcname=os.path.join("geckoview", os.path.relpath(abs_path, maven_folder)))
 
 
 def install_app_bundle(command_context, bundle):

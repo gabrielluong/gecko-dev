@@ -23,6 +23,7 @@ def add_common_config(config, tasks):
         fetches["external-gradle-dependencies"] = [
             "external-gradle-dependencies.tar.xz"
         ]
+        fetches["build-fat-aar"] = ["target.maven.tar.gz"]
 
         run = task.setdefault("run", {})
         run["using"] = "gradlew"

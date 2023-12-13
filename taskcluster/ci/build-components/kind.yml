@@ -16,6 +16,7 @@ not-for-components:
 kind-dependencies:
     - toolchain
     - external-gradle-dependencies
+    - build-fat-aar
 
 job-defaults:
     artifact-template:
@@ -51,6 +52,10 @@ job-defaults:
             - android-sdk-linux
         external-gradle-dependencies:
             - external-gradle-dependencies.tar.xz
+        build-fat-aar:
+            - target.maven.tar.gz
+    dependencies:
+        build-fat-aar: build-fat-aar-android-geckoview-fat-aar-shippable/opt
     include-coverage:
         by-build-type:
             release: false
