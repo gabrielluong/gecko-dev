@@ -415,5 +415,4 @@ jobs:
           treeherder-symbol: android-l10n-import
           target-tasks-method: android-l10n-import
       run-on-projects: [oak]
-      when:
-          - {hour: 0, minute: 0}
+      when: []  # hook only
