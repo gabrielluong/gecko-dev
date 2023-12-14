@@ -94,6 +94,7 @@ class ArtifactJob(object):
     nightly_candidate_trees = [
         "mozilla-central",
         "integration/autoland",
+        "projects/oak",
     ]
     beta_candidate_trees = [
         "releases/mozilla-beta",
