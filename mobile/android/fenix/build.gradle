@@ -266,15 +266,3 @@ tasks.register("listRepositories") {
         project.repositories.each { println "Name: " + it.name + "; url: " + it.url }
     }
 }
-
-tasks.register("githubTestDetails", GithubDetailsTask) {
-    text = "### [Unit Test Results Fenix]({reportsUrl}/test/testFenixDebugUnitTest/index.html)"
-}
-
-tasks.register("githubLintDetektDetails", GithubDetailsTask) {
-    text = "### [Detekt Results Fenix]({reportsUrl}/detekt.html)"
-}
-
-tasks.register("githubLintAndroidDetails", GithubDetailsTask) {
-    text = "### [Android Lint Results Fenix]({reportsUrl}/lint-results-debug.html)"
-}
