@@ -807,10 +807,6 @@ snap-upstream-test
 -------------------
 Test a Firefox Snap built using upstream tooling
 
-external-gradle-dependencies
-----------------------------
-External Gradle dependencies toolchain task.
-
 build-components
 ----------------
 Build android-components.
