@@ -60,6 +60,21 @@ android {
 // for it into the project directory.
 ext.allowMetricsFromAAR = true
 
+repositories {
+    if (findProject(":geckoview") == null) {
+        // We're not running from the toplevel, so we need to fetch geckoview from a maven repo
+        if (gradle.hasProperty("geckoviewRepo")) {
+            // in CI, we pass a path to the repo
+            maven {
+                url gradle.property("geckoviewRepo")
+            }
+        } else {
+            // for local builds we expect geckoview to have been exported to mavenLocal
+            mavenLocal()
+        }
+    }
+}
+
 dependencies {
     implementation project(':concept-engine')
     implementation project(':concept-fetch')
@@ -70,15 +85,10 @@ dependencies {
     }
     implementation ComponentsDependencies.kotlin_coroutines
 
-    if (System.env.MOZ_AUTOMATION) {
-        rootProject.logger.lifecycle("Getting geckoview in MOZ_AUTOMATION getArtifactId=${getArtifactId()} mozconfig=${gradle.mozconfig}")
-        api "org.mozilla.geckoview:${getArtifactId()}:+"
-    } else if (findProject(":geckoview") != null) {
+    if (findProject(":geckoview") != null) {
         api project(':geckoview')
-    } else if (gradle.mozconfig.substs.MOZ_ARTIFACT_BUILDS) {
-        api getGeckoViewDependency()
     } else {
-        api ComponentsDependencies.mozilla_geckoview
+        api getGeckoViewDependency()
     }
 
     implementation ComponentsDependencies.androidx_paging
@@ -182,5 +192,6 @@ def getArtifactId() {
 }
 
 def getGeckoViewDependency() {
+    rootProject.logger.lifecycle("Getting geckoview: ${getArtifactId()}:${getVersionNumber()}")
     return "org.mozilla.geckoview:${getArtifactId()}:${getVersionNumber()}"
 }
