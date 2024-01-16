@@ -102,7 +102,7 @@ def configure_gradlew(config, job, taskdesc):
 
 
 def _extract_gradlew_command(run, fetches_dir):
-    pre_gradle_commands = [["./mach", "configure"]]
+    pre_gradle_commands = [["./mach", "configure", "--disable-compile-environment"]]
     pre_gradle_commands += run.pop("pre-gradlew", [])
     pre_gradle_commands += [
         _generate_dummy_secret_command(secret)
