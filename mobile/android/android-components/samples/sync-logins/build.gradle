@@ -6,6 +6,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    buildToolsVersion config.buildToolsVersion
+
     defaultConfig {
         applicationId "org.mozilla.samples.sync.logins"
         minSdkVersion config.minSdkVersion

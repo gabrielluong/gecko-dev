@@ -28,6 +28,8 @@ def getVcsHash = { ->
 }
 
 android {
+    buildToolsVersion config.buildToolsVersion
+
     defaultConfig {
         minSdkVersion config.minSdkVersion
         compileSdk config.compileSdkVersion

@@ -35,19 +35,22 @@ class Config {
     public final Integer compileSdkVersion
     public final Integer minSdkVersion
     public final Integer targetSdkVersion
+    public final String buildToolsVersion
 
     Config(
             String componentsVersion,
             String componentsGroupId,
             Integer compileSdkVersion,
             Integer minSdkVersion,
-            Integer targetSdkVersion
+            Integer targetSdkVersion,
+            String buildToolsVersion
     ) {
         this.componentsVersion = componentsVersion
         this.componentsGroupId = componentsGroupId
         this.compileSdkVersion = compileSdkVersion
         this.minSdkVersion = minSdkVersion
         this.targetSdkVersion = targetSdkVersion
+        this.buildToolsVersion = buildToolsVersion
     }
 }
 
@@ -142,7 +145,8 @@ gradle.projectsLoaded { ->
             configData.componentsGroupId,
             configData.compileSdkVersion,
             configData.minSdkVersion,
-            configData.targetSdkVersion
+            configData.targetSdkVersion,
+            configData.buildToolsVersion
     )
 
     gradle.rootProject.ext.buildConfig = buildconfig

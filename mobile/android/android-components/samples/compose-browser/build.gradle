@@ -7,6 +7,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 
 android {
+    buildToolsVersion config.buildToolsVersion
+
     defaultConfig {
         applicationId "org.mozilla.samples.compose.browser"
         minSdkVersion config.minSdkVersion

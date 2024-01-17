@@ -31,6 +31,8 @@ import static org.gradle.api.tasks.testing.TestResult.ResultType
 apply from: 'benchmark.gradle'
 
 android {
+    buildToolsVersion config.buildToolsVersion
+
     project.maybeConfigForJetpackBenchmark(it)
     if (project.hasProperty("testBuildType")) {
         // Allowing to configure the test build type via command line flag (./gradlew -PtestBuildType=beta ..)

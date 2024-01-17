@@ -27,6 +27,8 @@ import groovy.json.JsonOutput
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 android {
+    buildToolsVersion config.buildToolsVersion
+
     if (project.hasProperty("testBuildType")) {
         // Allowing to configure the test build type via command line flag (./gradlew -PtestBuildType=beta ..)
         // in order to run UI tests against other build variants than debug in automation.

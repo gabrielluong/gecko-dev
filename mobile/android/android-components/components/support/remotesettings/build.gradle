@@ -23,6 +23,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlinx-serialization'
 
 android {
+    buildToolsVersion config.buildToolsVersion
     compileSdkVersion config.compileSdkVersion
 
     defaultConfig {
