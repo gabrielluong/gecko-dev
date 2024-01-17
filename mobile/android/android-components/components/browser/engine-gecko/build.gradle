@@ -2,6 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+import java.nio.file.Paths
+
 buildscript {
     repositories {
         gradle.mozconfig.substs.GRADLE_MAVEN_REPOSITORIES.each { repository ->
@@ -71,6 +73,10 @@ repositories {
                 url gradle.property("geckoviewRepo")
             }
         } else {
+            /*println("topobjdir ${gradle.mozconfig.topobjdir}")
+            maven {
+                url Paths.get(gradle.mozconfig.topobjdir, "gradle", "maven").toUri()
+            }*/
             // for local builds we expect geckoview to have been exported to mavenLocal
             mavenLocal()
         }
