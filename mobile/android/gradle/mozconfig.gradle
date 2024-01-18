@@ -11,6 +11,12 @@ apply from: file('./mach_env.gradle')
 
 logger.lifecycle("mozconfig.gradle> Loading mach environment into a gradle extension property")
 
+println("XXX GECKO_PATH=${System.env.GECKO_PATH}")
+if (!ext.hasProperty("topsrcdir")) {
+    ext.topsrcdir = System.env.GECKO_PATH
+}
+println("XXX topsrcdir=${topsrcdir}")
+
 def commandLine = ["${topsrcdir}/mach", "environment", "--format", "json", "--verbose"]
 if (System.env.GRADLE_MACH_PYTHON) {
     commandLine.addAll(0, [System.env.GRADLE_MACH_PYTHON])
