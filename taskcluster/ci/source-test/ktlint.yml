@@ -12,7 +12,7 @@ job-defaults:
         code-review: true
     always-target: true
     dependencies:
-        build-fat-aar: build-fat-aar-android-geckoview-fat-aar-shippable/opt
+        build-fat-aar: build-fat-aar-android-geckoview-fat-aar/opt
     fetches:
         toolchain:
             - android-sdk-linux
