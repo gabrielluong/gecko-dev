@@ -412,6 +412,9 @@ dependencies {
 
 // Mimic Python: open(os.path.join(buildconfig.topobjdir, 'buildid.h')).readline().split()[2]
 def getBuildId() {
+    if (System.env.MOZ_BUILD_DATE) {
+        return System.env.MOZ_BUILD_DATE
+    }
     return file("${gradle.mozconfig.topobjdir}/buildid.h").getText('utf-8').split()[2]
 }
 
