@@ -68,5 +68,5 @@ jobs:
         routes:
             by-level:
                 '3':
-                  - "notify.email.release-mgmt@mozilla.com.on-failed"
+                    - "notify.email.release-mgmt@mozilla.com.on-failed"
                 'default': []

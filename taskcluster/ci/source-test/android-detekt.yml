@@ -32,7 +32,6 @@ job-defaults:
             - "mobile/android/android-components/**"
 
 
-
 detekt-android-components:
     run:
         pre-gradlew:

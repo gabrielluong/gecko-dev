@@ -76,8 +76,6 @@ jobs:
 
     focus-release:
         description: 'Release Focus build'
-            # any tasks that have this as a primary dependency will
-            # inherit this attribute via the multi_dep loader
         attributes:
             release-type: release
             shipping-product: focus
