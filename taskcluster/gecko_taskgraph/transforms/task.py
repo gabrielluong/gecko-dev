@@ -1427,7 +1427,9 @@ def build_treescript_payload(config, task, task_def):
     if worker.get("android-l10n-import-info"):
         android_l10n_import_info = {}
         for k, v in worker["android-l10n-import-info"].items():
-            android_l10n_import_info[k.replace("-", "_")] = worker["android-l10n-import-info"][k]
+            android_l10n_import_info[k.replace("-", "_")] = worker[
+                "android-l10n-import-info"
+            ][k]
         android_l10n_import_info["toml_info"] = [
             {
                 param_name.replace("-", "_"): param_value
@@ -1441,7 +1443,9 @@ def build_treescript_payload(config, task, task_def):
     if worker.get("android-l10n-sync-info"):
         android_l10n_sync_info = {}
         for k, v in worker["android-l10n-sync-info"].items():
-            android_l10n_sync_info[k.replace("-", "_")] = worker["android-l10n-sync-info"][k]
+            android_l10n_sync_info[k.replace("-", "_")] = worker[
+                "android-l10n-sync-info"
+            ][k]
         android_l10n_sync_info["toml_info"] = [
             {
                 param_name.replace("-", "_"): param_value

@@ -42,10 +42,15 @@ def resolve_keys(config, tasks):
 @transforms.add
 def handle_update_channel(config, tasks):
     for task in tasks:
-        build_fat_aar = config.kind_dependencies_tasks[task["dependencies"]["build-fat-aar"]]
+        build_fat_aar = config.kind_dependencies_tasks[
+            task["dependencies"]["build-fat-aar"]
+        ]
         if build_fat_aar.attributes.get("nightly"):
-            task["worker"].setdefault("env", {}).setdefault("MOZ_UPDATE_CHANNEL", build_fat_aar.attributes["update-channel"])
+            task["worker"].setdefault("env", {}).setdefault(
+                "MOZ_UPDATE_CHANNEL", build_fat_aar.attributes["update-channel"]
+            )
         yield task
+
 
 @transforms.add
 def handle_coverage(config, tasks):

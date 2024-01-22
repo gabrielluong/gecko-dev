@@ -25,7 +25,10 @@ def add_common_config(config, tasks):
             "android-gradle-python-envs",
             "linux64-jdk",
         ]
-        fetches["build-fat-aar"] = ["target.maven.tar.xz", {"artifact": "mozconfig", "extract": False}]
+        fetches["build-fat-aar"] = [
+            "target.maven.tar.xz",
+            {"artifact": "mozconfig", "extract": False},
+        ]
 
         run = task.setdefault("run", {})
         run["using"] = "gradlew"
@@ -42,10 +45,16 @@ def add_common_config(config, tasks):
         worker["docker-image"]["in-tree"] = "android-components"
         worker["max-run-time"] = 7200
         worker["chain-of-trust"] = True
-        worker.setdefault("env", {}).setdefault("MOZCONFIG", "/builds/worker/fetches/mozconfig")
-        build_fat_aar = config.kind_dependencies_tasks[task["dependencies"]["build-fat-aar"]]
+        worker.setdefault("env", {}).setdefault(
+            "MOZCONFIG", "/builds/worker/fetches/mozconfig"
+        )
+        build_fat_aar = config.kind_dependencies_tasks[
+            task["dependencies"]["build-fat-aar"]
+        ]
         if build_fat_aar.attributes.get("shippable", False):
-            worker["env"].setdefault("MOZ_UPDATE_CHANNEL", build_fat_aar.attributes["update-channel"])
+            worker["env"].setdefault(
+                "MOZ_UPDATE_CHANNEL", build_fat_aar.attributes["update-channel"]
+            )
 
         yield task
 
