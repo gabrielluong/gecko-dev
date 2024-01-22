@@ -52,6 +52,7 @@ license:
         - mobile/android/android-components/components/feature/customtabs/src/main/res/
         - mobile/android/android-components/components/feature/downloads/src/main/res/
         - mobile/android/android-components/components/feature/findinpage/src/main/res/
+        - mobile/android/android-components/components/feature/fxsuggest/src/main/res
         - mobile/android/android-components/components/feature/media/src/main/res/
         - mobile/android/android-components/components/feature/privatemode/src/main/res/
         - mobile/android/android-components/components/feature/prompts/src/main/res/
