@@ -120,10 +120,6 @@ def configure_gradlew(config, job, taskdesc):
     configure_taskdesc_for_run(config, job, taskdesc, job["worker"]["implementation"])
 
 
-def _extract_gradlew_command(run, fetches_dir):
-    return (pre_gradle, secrets, gradlew_args, post_gradle)
-
-
 def _generate_secret_command(secret):
     secret_command = [
         "/builds/worker/checkouts/gecko/taskcluster/scripts/get-secret.py",
