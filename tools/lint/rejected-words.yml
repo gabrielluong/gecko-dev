@@ -161,6 +161,8 @@ avoid-blacklist-and-whitelist:
         - mobile/android/docs/changelog.md
         - mobile/android/fenix/app/src/main/java/org/mozilla/fenix/ext/Bitmap.kt
         - mobile/android/fenix/app/src/main/java/org/mozilla/fenix/perf/StrictModeManager.kt
+        - mobile/android/fenix/app/src/main/java/org/mozilla/fenix/translations/preferences/downloadlanguages/DownloadLanguagesFeature.kt
+        - mobile/android/fenix/app/src/test/java/org/mozilla/fenix/translations/preferences/downloadlanguages/DownloadLanguagesFeatureTest.kt
         - mobile/android/focus-android/app/src/main/res/values-ar/strings.xml
         - mobile/android/focus-android/app/src/main/res/values-et/strings.xml
         - mobile/android/focus-android/app/src/main/res/values-lt/strings.xml
