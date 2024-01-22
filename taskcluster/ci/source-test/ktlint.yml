@@ -11,16 +11,12 @@ job-defaults:
     attributes:
         code-review: true
     always-target: true
-    dependencies:
-        build-fat-aar: build-fat-aar-android-geckoview-fat-aar/opt
     fetches:
         toolchain:
             - android-sdk-linux
             - android-gradle-dependencies
             - android-gradle-python-envs
             - linux64-jdk-repack
-        build-fat-aar:
-            - target.maven.tar.xz
     platform: 'lint/opt'
     treeherder:
         kind: test
