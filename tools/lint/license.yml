@@ -30,6 +30,9 @@ license:
         - gradle.properties
         # might not work with license
         - gradle/wrapper/gradle-wrapper.properties
+        - mobile/android/android-components/gradle/wrapper/gradle-wrapper.properties
+        - mobile/android/fenix/gradle/wrapper/gradle-wrapper.properties
+        - mobile/android/focus-android/gradle/wrapper/gradle-wrapper.properties
         # ICU4X data
         - intl/icu_segmenter_data
         # Imported code that is dual Apache2 / MIT licensed
@@ -55,7 +58,7 @@ license:
         - mobile/android/android-components/components/feature/customtabs/src/main/res/
         - mobile/android/android-components/components/feature/downloads/src/main/res/
         - mobile/android/android-components/components/feature/findinpage/src/main/res/
-        - mobile/android/android-components/components/feature/fxsuggest/src/main/res
+        - mobile/android/android-components/components/feature/fxsuggest/src/main/res/
         - mobile/android/android-components/components/feature/media/src/main/res/
         - mobile/android/android-components/components/feature/privatemode/src/main/res/
         - mobile/android/android-components/components/feature/prompts/src/main/res/
@@ -65,6 +68,7 @@ license:
         - mobile/android/android-components/components/feature/search/src/main/res/
         - mobile/android/android-components/components/feature/sitepermissions/
         - mobile/android/android-components/components/feature/tabs/src/main/res/
+        - mobile/android/android-components/components/feature/webcompat/src/main/assets/extensions/webcompat/injections/
         - mobile/android/android-components/components/feature/webnotifications/src/main/res/
         - mobile/android/android-components/components/lib/crash/src/main/res/
         - mobile/android/android-components/components/service/nimbus/src/main/res/
@@ -73,7 +77,6 @@ license:
         - mobile/android/android-components/components/support/utils/src/main/res/
         - mobile/android/android-components/components/ui/tabcounter/src/main/res/
         - mobile/android/android-components/components/ui/widgets/src/main/res/
-        - mobile/android/android-components/components/feature/webcompat/src/main/assets/extensions/webcompat/injections/
         - mobile/android/docs/
         - mobile/android/fenix/app/src/main/res/
         - mobile/android/fenix/benchmark/src/main/AndroidManifest.xml
