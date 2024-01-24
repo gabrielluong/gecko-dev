@@ -43,9 +43,10 @@ Below is a summary of its functionality in order of execution:
 import json
 import os
 import textwrap
-from lib.testrail_conn import APIClient
-from dotenv import load_dotenv
 from datetime import datetime
+
+from dotenv import load_dotenv
+from lib.testrail_conn import APIClient
 
 try:
     load_dotenv("execution_metadata.env")  # Attempt to load .env file
