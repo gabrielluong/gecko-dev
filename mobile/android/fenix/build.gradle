@@ -59,6 +59,10 @@ allprojects {
                 }
             }
         }
+
+        maven {
+           url Paths.get(gradle.mozconfig.topobjdir, "gradle", "maven").toUri()
+        }
     }
 
     tasks.withType(KotlinCompile).configureEach {
