@@ -67,7 +67,7 @@ except json.JSONDecodeError as e:
 try:
     PRODUCT_TYPE = os.environ["PRODUCT_TYPE"]
     RELEASE_TYPE = os.environ["RELEASE_TYPE"]
-    VERSION_NUMBER = os.environ["MOBILE_HEAD_REF"]
+    VERSION_NUMBER = os.environ["GECKO_HEAD_REF"]
     TEST_STATUS = os.environ["TEST_STATUS"]
 
     if TEST_STATUS not in ("PASS", "FAIL"):
