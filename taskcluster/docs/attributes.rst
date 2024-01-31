@@ -490,10 +490,6 @@ apks
 ====
 To do.
 
-nightly-task
-============
-To do.
-
 release-type
 ============
 To do.
