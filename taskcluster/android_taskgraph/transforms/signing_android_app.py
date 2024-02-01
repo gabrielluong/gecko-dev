@@ -7,6 +7,7 @@ APK and AAB signing kinds.
 """
 
 from taskgraph.transforms.base import TransformSequence
+from taskgraph.util.dependencies import get_primary_dependency
 from taskgraph.util.schema import resolve_keyed_by
 
 transforms = TransformSequence()
@@ -30,7 +31,6 @@ def resolve_keys(config, tasks):
         for key in (
             "signing-format",
             "notify",
-            "run-on-projects",
             "treeherder.platform",
         ):
             resolve_keyed_by(
@@ -40,7 +40,6 @@ def resolve_keys(config, tasks):
                 **{
                     "build-type": task["attributes"]["build-type"],
                     "level": config.params["level"],
-                    "tasks-for": config.params["tasks_for"],
                 },
             )
         yield task
@@ -107,4 +106,12 @@ def format_email(config, tasks):
                 email["subject"] = email["subject"].format(version=version)
                 email["content"] = email["content"].format(version=version)
 
+        yield task
+
+
+@transforms.add
+def set_run_on_projects(config, tasks):
+    for task in tasks:
+        dep_job = get_primary_dependency(config, task)
+        task["run-on-projects"] = dep_job.attributes.get("run_on_projects")
         yield task

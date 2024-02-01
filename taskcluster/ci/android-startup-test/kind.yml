@@ -27,6 +27,7 @@ job-defaults:
     run:
         using: run-commands
         use-caches: false
+    run-on-projects: [release]
 
 jobs:
     fenix-arm-nightly-robo-opt:
