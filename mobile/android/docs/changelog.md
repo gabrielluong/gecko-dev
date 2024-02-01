@@ -19,7 +19,7 @@ permalink: /changelog/
 
 * **all components**
   * All new usages of the `concept-fetch` component to make fetch requests now have conservative-mode off by default. Current features will continue to use conservative mode until individually updated.
-  
+
 * **browser-toolbar**
   * Add `showMenuButton` and `hideMenuButton` API to `BrowserToolbar` and `DisplayToolbar` to allow hiding and showing of the menu button in
   the `BrowserToolbar` [Bug 1864760](https://bugzilla.mozilla.org/show_bug.cgi?id=1864760)
