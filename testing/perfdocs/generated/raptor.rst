@@ -3322,6 +3322,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **unit**: score
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **speedometer-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -3679,6 +3695,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **type**: benchmark
    * **unit**: score
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **speedometer-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -4049,6 +4081,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **unit**: score
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **speedometer3-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -4408,6 +4456,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **type**: benchmark
    * **unit**: score
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **speedometer3-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -7615,6 +7679,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **use live sites**: true
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-playback-av1-sfr-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-macosx1015-64-shippable-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -8458,6 +8538,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **unit**: score
    * **use live sites**: true
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-playback-h264-sfr-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -9779,6 +9875,22 @@ Standard benchmarks are third-party tests (i.e. Speedometer) that we have integr
    * **unit**: score
    * **use live sites**: true
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-playback-vp9-sfr-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-linux1804-64-clang-trunk-qr/opt**
       :widths: 30 15 15 15 15
@@ -13843,6 +13955,22 @@ Browsertime tests that use a custom pageload test script. These use the pageload
    * **use live sites**: true
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **constant-regression-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-linux1804-64-nightlyasrelease-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -15472,6 +15600,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **amazon-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -16682,6 +16826,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **cnn-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -17485,6 +17645,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **espn-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -18079,6 +18255,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **facebook-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -20208,6 +20400,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **imdb-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -20941,6 +21149,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **instagram-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -23891,6 +24115,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **reddit-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -25599,6 +25839,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **wikipedia-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -26500,6 +26756,22 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -28943,6 +29215,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **allrecipes-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -29038,6 +29326,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **amazon-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -29612,6 +29916,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **amazon-search-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -29717,6 +30037,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **bing-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -29849,6 +30185,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **bing-search-restaurants-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -29980,6 +30332,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **booking-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -30110,6 +30478,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **cnn-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -30589,6 +30973,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **cnn-ampstories-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -30719,6 +31119,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **dailymail-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -30851,6 +31267,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **ebay-kleinanzeigen-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -30982,6 +31414,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **ebay-kleinanzeigen-search-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -31112,6 +31560,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **espn-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -31421,6 +31885,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **facebook-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -31785,6 +32265,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **facebook-cristiano-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -31917,6 +32413,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **google-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -32012,6 +32524,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **google-maps-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -32145,6 +32673,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **google-search-restaurants-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -32275,6 +32819,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **imdb-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -32704,6 +33264,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **instagram-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -33203,6 +33779,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **microsoft-support-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -33298,6 +33890,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **reddit-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -33727,6 +34335,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **sina-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -33832,6 +34456,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **stackoverflow-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -33964,6 +34604,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **web-de-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -34094,6 +34750,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **wikipedia-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
@@ -34598,6 +35270,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **use live sites**: false
    * **Test Task**:
 
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
+
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -35025,6 +35713,22 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
+
+   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
+      :widths: 30 15 15 15 15
+      :header-rows: 1
+
+      * - **Test Name**
+        - mozilla-central
+        - autoland
+        - mozilla-release
+        - mozilla-beta
+      * - **youtube-watch-fenix-nightly-simulation-arm64-v8a-nofis**
+        - ✅
+        - ✅
+        - ✅
+        - ✅
+
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
