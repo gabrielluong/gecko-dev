@@ -46,7 +46,7 @@ jobs:
             pre-commands:
                 - ["cd", "mobile/android/fenix"]
             commands:
-                - [wget, {artifact-reference: '<signing/public/build/target.arm64-v8a.apk>'}, '-O', app.apk ]
+                - [wget, {artifact-reference: '<signing/public/build/target.arm64-v8a.apk>'}, '-O', app.apk]
                 - [automation/taskcluster/androidTest/robo-test.sh, arm-start-test-robo, app.apk]
         treeherder:
             symbol: fenix-nightly(startup-arm-robo-opt)
