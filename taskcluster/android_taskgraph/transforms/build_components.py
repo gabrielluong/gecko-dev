@@ -45,7 +45,7 @@ def handle_update_channel(config, tasks):
         build_fat_aar = config.kind_dependencies_tasks[
             task["dependencies"]["build-fat-aar"]
         ]
-        if build_fat_aar.attributes.get("nightly"):
+        if build_fat_aar.attributes.get("shippable"):
             task["worker"].setdefault("env", {}).setdefault(
                 "MOZ_UPDATE_CHANNEL",
                 build_fat_aar.attributes.get("update-channel", "default"),
