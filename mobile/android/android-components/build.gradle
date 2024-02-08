@@ -62,7 +62,11 @@ plugins {
     id("com.google.devtools.ksp").version("$ksp_plugin")
 }
 
+println("GLGLGL: Got to A-C build.gradle allprojects")
+
 allprojects {
+    println("GLGLGL: Got to A-C build.gradle allprojects inside")
+
     repositories {
         if (!System.env.MOZ_AUTOMATION && gradle.mozconfig.substs.MOZ_ARTIFACT_BUILDS) {
             mavenLocal()
@@ -111,8 +115,13 @@ allprojects {
     }
 }
 
+println("GLGLGL: Got to A-C build.gradle subprojects")
+
+
 subprojects {
     apply plugin: 'jacoco'
+
+    println("GLGLGL: Got to A-C build.gradle subprojects inside")
 
     // Enable Kotlin warnings as errors for all modules
     tasks.withType(KotlinCompile).configureEach {
@@ -120,6 +129,7 @@ subprojects {
     }
 
     project.configurations.configureEach {
+        println("GLGLGL: Got to A-C build.gradle project.configurations.configureEach")
         // Dependencies can't depend on a different major version of Glean than A-C itself.
         resolutionStrategy.eachDependency { details ->
             if (details.requested.group == 'org.mozilla.telemetry'
@@ -176,6 +186,8 @@ subprojects {
     }
 
     afterEvaluate {
+        println("GLGLGL: Got to A-C build.gradle subprojects afterEvaluate")
+
         if (it.hasProperty('android')) {
             jacoco {
                 toolVersion = Versions.jacoco
@@ -229,6 +241,7 @@ subprojects {
             }
 
             android {
+                println("GLGLGL: Got to A-C build.gradle subprojects android")
                 testOptions {
                     unitTests {
                         includeAndroidResources = true
@@ -251,6 +264,7 @@ subprojects {
                 }
 
                 compileOptions {
+                    println("GLGLGL: Got to A-C build.gradle subprojects compileOptions")
                     sourceCompatibility JavaVersion.VERSION_17
                     targetCompatibility JavaVersion.VERSION_17
                 }
@@ -261,6 +275,7 @@ subprojects {
                 }
             }
 
+            println("GLGLGL: Got to A-C build.gradle subprojects somewhere")
             if (project.hasProperty("coverage") && project.name != "support-test") {
                 android.buildTypes.all { buildType ->
                     tasks.withType(Test).configureEach() {
