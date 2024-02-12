@@ -182,9 +182,7 @@ file-whitespace:
         - mobile/android/android-components/components/feature/tab-collections/schemas/mozilla.components.feature.tab.collections.db.TabCollectionDatabase/1.json
         - mobile/android/android-components/components/feature/top-sites/schemas/mozilla.components.feature.top.sites.db.TopSiteDatabase/1.json
         - mobile/android/android-components/components/feature/top-sites/schemas/mozilla.components.feature.top.sites.db.TopSiteDatabase/3.json
-        - mobile/android/android-components/components/lib/crash/docs/metrics.md
         - mobile/android/android-components/components/lib/crash/schemas/mozilla.components.lib.crash.db.CrashDatabase/1.json
-        - mobile/android/android-components/components/service/nimbus/docs/metrics.md
         - mobile/android/android-components/components/service/nimbus/messaging.fml.yaml
         - mobile/android/android-components/components/service/pocket/schemas/mozilla.components.service.pocket.stories.db.PocketRecommendationsDatabase/1.json
         - mobile/android/android-components/components/service/pocket/schemas/mozilla.components.service.pocket.stories.db.PocketRecommendationsDatabase/2.json
@@ -206,13 +204,9 @@ file-whitespace:
         - mobile/android/fenix/app/nimbus.fml.yaml
         - mobile/android/fenix/app/src/androidTest/java/org/mozilla/fenix/experimentintegration/variables.yaml
         - mobile/android/fenix/automation/taskcluster/androidTest/flank-arm-beta.yml
-        - mobile/android/fenix/automation/taskcluster/androidTest/lib/testrail_conn.py
-        - mobile/android/fenix/automation/taskcluster/androidTest/testrail.py
         - mobile/android/fenix/docs/Firebase-Cloud-Messaging-for-WebPush.md
         - mobile/android/fenix/mozilla-detekt-rules/src/main/resources/config.yml
         - mobile/android/focus-android/automation/taskcluster/androidTest/flank-arm-beta.yml
-        - mobile/android/focus-android/automation/taskcluster/androidTest/lib/testrail_conn.py
-        - mobile/android/focus-android/automation/taskcluster/androidTest/testrail.py
 
     extensions:
         - .c
