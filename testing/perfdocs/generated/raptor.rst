@@ -18256,22 +18256,6 @@ Tests for page-load performance. The links direct to the actual websites that ar
    * **use live sites**: false
    * **Test Task**:
 
-   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
-      :widths: 30 15 15 15 15
-      :header-rows: 1
-
-      * - **Test Name**
-        - mozilla-central
-        - autoland
-        - mozilla-release
-        - mozilla-beta
-      * - **facebook-fenix-nightly-simulation-arm64-v8a-nofis**
-        - ✅
-        - ✅
-        - ✅
-        - ✅
-
-
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
       :header-rows: 1
@@ -31885,22 +31869,6 @@ Page-load performance test suite on Android. The links direct to the actual webs
    * **unit**: ms
    * **use live sites**: false
    * **Test Task**:
-
-   .. list-table:: **android-browsertime-fenix-android-hw-a51-11-0-aarch64-shippable-qr/opt**
-      :widths: 30 15 15 15 15
-      :header-rows: 1
-
-      * - **Test Name**
-        - mozilla-central
-        - autoland
-        - mozilla-release
-        - mozilla-beta
-      * - **facebook-fenix-nightly-simulation-arm64-v8a-nofis**
-        - ✅
-        - ✅
-        - ✅
-        - ✅
-
 
    .. list-table:: **test-android-hw-a51-11-0-aarch64-qr/opt**
       :widths: 30 15 15 15 15
