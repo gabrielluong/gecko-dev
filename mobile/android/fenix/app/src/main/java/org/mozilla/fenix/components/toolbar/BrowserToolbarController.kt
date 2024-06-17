@@ -79,6 +79,11 @@ interface BrowserToolbarController {
      * @see [BrowserToolbarInteractor.onShareActionClicked]
      */
     fun onShareActionClicked()
+
+    /**
+     * @see [BrowserToolbarInteractor.onNewTabButtonClicked]
+     */
+    fun handleNewTabButtonClick()
 }
 
 private const val MAX_DISPLAY_NUMBER_SHOPPING_CFR = 3
@@ -254,6 +259,17 @@ class DefaultBrowserToolbarController(
             showPage = true,
         )
         navController.navigate(directions)
+    }
+
+    override fun handleNewTabButtonClick() {
+        tabsUseCases.addTab.invoke(
+            startLoading = false,
+            private = currentSession?.content?.private ?: false
+        )
+
+        navController.navigate(
+            BrowserFragmentDirections.actionGlobalHome(focusOnAddressBar = true),
+        )
     }
 
     companion object {

@@ -80,6 +80,7 @@ class TabPreview @JvmOverloads constructor(
 
                             BrowserNavBar(
                                 isPrivateMode = browserStore.state.selectedTab?.content?.private ?: false,
+                                showNewTabButton = false,
                                 browserStore = browserStore,
                                 menuButton = MenuButton(context),
                                 onBackButtonClick = {
@@ -95,6 +96,9 @@ class TabPreview @JvmOverloads constructor(
                                     // no-op
                                 },
                                 onHomeButtonClick = {
+                                    // no-op
+                                },
+                                onNewTabButtonClick = {
                                     // no-op
                                 },
                                 onTabsButtonClick = {

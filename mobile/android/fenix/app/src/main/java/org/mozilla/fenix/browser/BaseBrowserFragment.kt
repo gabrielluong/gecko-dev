@@ -1388,6 +1388,7 @@ abstract class BaseBrowserFragment :
 
                         BrowserNavBar(
                             isPrivateMode = activity.browsingModeManager.mode.isPrivate,
+                            showNewTabButton = context.settings().enableHomepageAsNewTab,
                             browserStore = context.components.core.store,
                             menuButton = menuButton,
                             onBackButtonClick = {
@@ -1421,6 +1422,9 @@ abstract class BaseBrowserFragment :
                                         BrowserFragmentDirections.actionGlobalHome(),
                                     )
                                 }
+                            },
+                            onNewTabButtonClick = {
+                                browserToolbarInteractor.onNewTabButtonClicked()
                             },
                             onTabsButtonClick = {
                                 NavigationBar.browserTabTrayTapped.record(NoExtras())
