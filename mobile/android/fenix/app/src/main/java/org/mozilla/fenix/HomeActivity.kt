@@ -49,6 +49,7 @@ import mozilla.components.browser.state.action.ContentAction
 import mozilla.components.browser.state.action.MediaSessionAction
 import mozilla.components.browser.state.action.SearchAction
 import mozilla.components.browser.state.search.SearchEngine
+import mozilla.components.browser.state.selector.findCustomTabOrSelectedTab
 import mozilla.components.browser.state.selector.getNormalOrPrivateTabs
 import mozilla.components.browser.state.selector.selectedTab
 import mozilla.components.browser.state.state.SessionState
@@ -1056,6 +1057,15 @@ open class HomeActivity : LocaleAwareAppCompatActivity(), NavHostActivity {
         val private = when (mode) {
             BrowsingMode.Private -> true
             BrowsingMode.Normal -> false
+        }
+        val store = components.core.store
+        store.state.findCustomTabOrSelectedTab()?.let {
+            store.dispatch(
+                ContentAction.UpdateUrlAction(
+                    sessionId = it.id,
+                    searchTermOrURL,
+                ),
+            )
         }
 
         // In situations where we want to perform a search but have no search engine (e.g. the user

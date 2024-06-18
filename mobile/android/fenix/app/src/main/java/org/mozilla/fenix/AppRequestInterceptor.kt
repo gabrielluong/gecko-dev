@@ -8,6 +8,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import androidx.core.content.getSystemService
 import androidx.navigation.NavController
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.EngineSession
@@ -41,6 +43,14 @@ class AppRequestInterceptor(
     ): RequestInterceptor.InterceptionResponse? {
         val services = context.components.services
 
+        if (uri == "about:home") {
+            MainScope().launch {
+                navController?.get()?.navigate(R.id.homeFragment)
+            }
+
+            return null
+        }
+
         return services.appLinksInterceptor.onLoadRequest(
             engineSession,
             uri,
@@ -58,6 +68,14 @@ class AppRequestInterceptor(
         errorType: ErrorType,
         uri: String?,
     ): RequestInterceptor.ErrorResponse? {
+        if (uri == "about:home") {
+            MainScope().launch {
+                navController?.get()?.navigate(R.id.homeFragment)
+            }
+
+            return null
+        }
+
         val improvedErrorType = improveErrorType(errorType)
         val riskLevel = getRiskLevel(improvedErrorType)
 

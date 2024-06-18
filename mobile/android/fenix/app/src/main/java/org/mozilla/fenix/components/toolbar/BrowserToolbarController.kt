@@ -263,6 +263,7 @@ class DefaultBrowserToolbarController(
 
     override fun handleNewTabButtonClick() {
         tabsUseCases.addTab.invoke(
+            url = "about:home",
             startLoading = false,
             private = currentSession?.content?.private ?: false
         )

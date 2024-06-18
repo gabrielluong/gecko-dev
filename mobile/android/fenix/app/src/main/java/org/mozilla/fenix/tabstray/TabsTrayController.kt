@@ -256,6 +256,7 @@ class DefaultTabsTrayController(
 
         if (settings.enableHomepageAsNewTab) {
             tabsUseCases.addTab.invoke(
+                url = "about:home",
                 startLoading = false,
                 private = isPrivate,
             )
@@ -563,7 +564,16 @@ class DefaultTabsTrayController(
                 val mode = BrowsingMode.fromBoolean(tab.content.private)
                 browsingModeManager.mode = mode
                 appStore.dispatch(AppAction.ModeChange(mode))
-                handleNavigateToBrowser()
+
+                if (tab.content.url == "about:home") {
+                    dismissTray()
+
+                    navController.navigate(
+                        TabsTrayFragmentDirections.actionGlobalHome(),
+                    )
+                } else {
+                    handleNavigateToBrowser()
+                }
             }
             tab.id in selected.map { it.id } -> handleTabUnselected(tab)
             source != TrayPagerAdapter.INACTIVE_TABS_FEATURE_NAME -> {
