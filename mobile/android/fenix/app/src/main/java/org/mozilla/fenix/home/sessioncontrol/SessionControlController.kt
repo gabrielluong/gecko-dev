@@ -53,6 +53,7 @@ import org.mozilla.fenix.collections.SaveCollectionStep
 import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.appstate.AppAction
+import org.mozilla.fenix.components.appstate.AppAction.ShortcutAction
 import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.components.metrics.MetricsUtils
 import org.mozilla.fenix.components.toolbar.navbar.shouldAddNavigationBar
@@ -378,19 +379,24 @@ class DefaultSessionControlController(
 
     override fun handleRemoveTopSiteClicked(topSite: TopSite) {
         TopSites.remove.record(NoExtras())
-        when (topSite.url) {
-            SupportUtils.POCKET_TRENDING_URL -> Pocket.pocketTopSiteRemoved.record(NoExtras())
-            SupportUtils.GOOGLE_URL -> TopSites.googleTopSiteRemoved.record(NoExtras())
-            SupportUtils.BAIDU_URL -> TopSites.baiduTopSiteRemoved.record(NoExtras())
-        }
 
-        viewLifecycleScope.launch(Dispatchers.IO) {
-            with(activity.components.useCases.topSitesUseCase) {
-                removeTopSites(topSite)
+        if (topSite is TopSite.Provided) {
+            appStore.dispatch(ShortcutAction.SponsoredShortcutRemoved(topSite))
+        } else {
+            when (topSite.url) {
+                SupportUtils.POCKET_TRENDING_URL -> Pocket.pocketTopSiteRemoved.record(NoExtras())
+                SupportUtils.GOOGLE_URL -> TopSites.googleTopSiteRemoved.record(NoExtras())
+                SupportUtils.BAIDU_URL -> TopSites.baiduTopSiteRemoved.record(NoExtras())
             }
-        }
 
-        showUndoSnackbarForTopSite(topSite)
+            viewLifecycleScope.launch(Dispatchers.IO) {
+                with(activity.components.useCases.topSitesUseCase) {
+                    removeTopSites(topSite)
+                }
+            }
+
+            showUndoSnackbarForTopSite(topSite)
+        }
     }
 
     override fun handleRenameCollectionTapped(collection: TabCollection) {

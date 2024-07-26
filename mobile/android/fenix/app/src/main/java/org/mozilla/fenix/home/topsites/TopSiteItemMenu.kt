@@ -57,19 +57,6 @@ class TopSiteItemMenu(
             } else {
                 null
             },
-            if (!isProvidedSite) {
-                SimpleBrowserMenuItem(
-                    if (isPinnedSite) {
-                        context.getString(R.string.remove_top_site)
-                    } else {
-                        context.getString(R.string.delete_from_history)
-                    },
-                ) {
-                    onItemTapped.invoke(Item.RemoveTopSite)
-                }
-            } else {
-                null
-            },
             if (isProvidedSite) {
                 SimpleBrowserMenuItem(
                     context.getString(R.string.top_sites_menu_settings),
@@ -87,6 +74,15 @@ class TopSiteItemMenu(
                 }
             } else {
                 null
+            },
+            SimpleBrowserMenuItem(
+                if (isPinnedSite || isProvidedSite) {
+                    context.getString(R.string.remove_top_site)
+                } else {
+                    context.getString(R.string.delete_from_history)
+                },
+            ) {
+                onItemTapped.invoke(Item.RemoveTopSite)
             },
         )
     }

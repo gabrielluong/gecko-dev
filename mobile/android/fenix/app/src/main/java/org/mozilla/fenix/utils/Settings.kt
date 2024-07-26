@@ -1719,6 +1719,15 @@ class Settings(private val appContext: Context) : PreferencesHolder {
     )
 
     /**
+     * Blocklist used to filter sponsored top sites from the home screen. Contains a set of
+     * hashed hostnames.
+     */
+    var sponsoredTopSitesBlocklist by stringSetPreference(
+        appContext.getPreferenceKey(R.string.pref_key_sponsored_top_sites_blocklist),
+        default = setOf(),
+    )
+
+    /**
      * Returns whether onboarding should be shown to the user.
      *
      * @param hasUserBeenOnboarded Boolean to indicate whether the user has been onboarded.

@@ -4,10 +4,13 @@
 
 package org.mozilla.fenix.home.blocklist
 
+import androidx.core.net.toUri
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import mozilla.components.browser.state.state.createTab
+import mozilla.components.feature.top.sites.TopSite
+import mozilla.components.support.ktx.kotlin.sha1
 import mozilla.components.support.test.ext.joinBlocking
 import mozilla.components.support.test.middleware.CaptureActionsMiddleware
 import mozilla.components.support.test.mock
@@ -458,5 +461,33 @@ class BlocklistMiddlewareTest {
             currentTabs[1],
             (appStore.state.recentSyncedTabState as RecentSyncedTabState.Success).tabs.firstOrNull(),
         )
+    }
+
+    @Test
+    fun `WHEN a sponsored shortcut is removed THEN add sponsored shortcut to blocklist`() {
+        val providedSite = TopSite.Provided(
+            id = 1L,
+            title = "Mozilla",
+            url = "https://mozilla.com",
+            clickUrl = "https://mozilla.com/click",
+            imageUrl = "https://test.com/image2.jpg",
+            impressionUrl = "https://example.com",
+            createdAt = 1,
+        )
+
+        val updateSlot = slot<Set<String>>()
+        every { mockSettings.sponsoredTopSitesBlocklist } returns setOf()
+        every { mockSettings.sponsoredTopSitesBlocklist = capture(updateSlot) } returns Unit
+
+        val middleware = BlocklistMiddleware(blocklistHandler)
+        val appStore = AppStore(
+            initialState = AppState(topSites = listOf(providedSite)),
+            middlewares = listOf(middleware),
+        )
+
+        appStore.dispatch(AppAction.ShortcutAction.SponsoredShortcutRemoved(providedSite)).joinBlocking()
+
+        assertEquals(setOf(providedSite.url.toUri().host?.sha1()), updateSlot.captured)
+        assertTrue(appStore.state.topSites.isEmpty())
     }
 }

@@ -4,12 +4,14 @@
 
 package org.mozilla.fenix.home.blocklist
 
+import androidx.core.net.toUri
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.slot
 import mozilla.components.browser.state.state.ContentState
 import mozilla.components.browser.state.state.TabSessionState
 import mozilla.components.concept.sync.DeviceType
+import mozilla.components.support.ktx.kotlin.sha1
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -43,6 +45,18 @@ class BlocklistHandlerTest {
         blocklistHandler.addUrlToBlocklist(addedUrl)
 
         assertEquals(setOf(addedUrl.stripAndHash()), updateSlot.captured)
+    }
+
+    @Test
+    fun `WHEN sponsored shortcut url is added to blocklist THEN settings updated with hash`() {
+        val addedUrl = "https://www.mozilla.org"
+        val updateSlot = slot<Set<String>>()
+        every { mockSettings.sponsoredTopSitesBlocklist } returns setOf()
+        every { mockSettings.sponsoredTopSitesBlocklist = capture(updateSlot) } returns Unit
+
+        blocklistHandler.addSponsoredTopSiteToBlocklist(addedUrl)
+
+        assertEquals(setOf(addedUrl.toUri().host?.sha1()), updateSlot.captured)
     }
 
     @Test

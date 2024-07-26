@@ -401,6 +401,13 @@ sealed class AppAction : Action {
          * [ShortcutAction] dispatched when a shortcut is removed.
          */
         data object ShortcutRemoved : ShortcutAction()
+
+        /**
+         * [ShortcutAction] dispatched when a sponsored shortcut is removed.
+         *
+         * @property topSite The [TopSite] that was dismissed.
+         */
+        data class SponsoredShortcutRemoved(val topSite: TopSite) : ShortcutAction()
     }
 
     /**

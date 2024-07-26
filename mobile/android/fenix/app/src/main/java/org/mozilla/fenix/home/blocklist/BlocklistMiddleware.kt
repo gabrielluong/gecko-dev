@@ -87,6 +87,13 @@ class BlocklistMiddleware(
                 addUrlToBlocklist(action.syncedTab.url)
                 state.toActionFilteringAllState(this)
             }
+
+            is AppAction.ShortcutAction.SponsoredShortcutRemoved -> {
+                addSponsoredTopSiteToBlocklist(action.topSite.url)
+                // Filtering is handled by the top sites storage and shortcut state reducer.
+                action
+            }
+
             else -> action
         }
     }

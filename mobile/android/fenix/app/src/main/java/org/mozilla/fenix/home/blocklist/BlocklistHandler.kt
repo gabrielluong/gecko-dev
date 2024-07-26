@@ -6,6 +6,7 @@ package org.mozilla.fenix.home.blocklist
 
 import android.net.Uri
 import androidx.annotation.VisibleForTesting
+import androidx.core.net.toUri
 import mozilla.components.support.ktx.kotlin.sha1
 import org.mozilla.fenix.ext.containsQueryParameters
 import org.mozilla.fenix.home.bookmarks.Bookmark
@@ -30,6 +31,18 @@ class BlocklistHandler(private val settings: Settings) {
     fun addUrlToBlocklist(url: String) {
         val updatedBlocklist = settings.homescreenBlocklist + url.stripAndHash()
         settings.homescreenBlocklist = updatedBlocklist
+    }
+
+    /**
+     * Adds the host to the sponsored top site blocklist.
+     *
+     * @param url The sponsored shortcut URL to be added to the blocklist.
+     */
+    fun addSponsoredTopSiteToBlocklist(url: String) {
+        url.toUri().host?.sha1()?.let {
+            val updatedBlocklist = settings.sponsoredTopSitesBlocklist + it
+            settings.sponsoredTopSitesBlocklist = updatedBlocklist
+        }
     }
 
     /**

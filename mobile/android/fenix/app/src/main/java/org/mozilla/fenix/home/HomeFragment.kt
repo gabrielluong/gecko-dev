@@ -160,6 +160,10 @@ import org.mozilla.fenix.home.toolbar.DefaultToolbarController
 import org.mozilla.fenix.home.toolbar.SearchSelectorBinding
 import org.mozilla.fenix.home.toolbar.SearchSelectorMenuBinding
 import org.mozilla.fenix.home.topsites.DefaultTopSitesView
+import org.mozilla.fenix.home.topsites.utils.AMAZON_SEARCH_ENGINE_NAME
+import org.mozilla.fenix.home.topsites.utils.AMAZON_SPONSORED_TITLE
+import org.mozilla.fenix.home.topsites.utils.EBAY_SPONSORED_TITLE
+import org.mozilla.fenix.home.topsites.utils.TopSitesUtils
 import org.mozilla.fenix.home.ui.Homepage
 import org.mozilla.fenix.messaging.DefaultMessageController
 import org.mozilla.fenix.messaging.FenixMessageSurfaceId
@@ -996,11 +1000,11 @@ class HomeFragment : Fragment() {
                 showProviderTopSites = settings.showContileFeature,
                 maxThreshold = TOP_SITES_PROVIDER_MAX_THRESHOLD,
                 providerFilter = { topSite ->
-                    when (store.state.search.selectedOrDefaultSearchEngine?.name) {
-                        AMAZON_SEARCH_ENGINE_NAME -> topSite.title != AMAZON_SPONSORED_TITLE
-                        EBAY_SPONSORED_TITLE -> topSite.title != EBAY_SPONSORED_TITLE
-                        else -> true
-                    }
+                    TopSitesUtils.shouldShowSponsoredTopSite(
+                        topSite = topSite,
+                        searchEngineName = store.state.search.selectedOrDefaultSearchEngine?.name,
+                        blocklist = settings.sponsoredTopSitesBlocklist,
+                    )
                 },
             ),
         )
@@ -1697,11 +1701,6 @@ class HomeFragment : Fragment() {
 
         // Delay for scrolling to the collection header
         private const val ANIM_SCROLL_DELAY = 100L
-
-        // Sponsored top sites titles and search engine names used for filtering
-        const val AMAZON_SPONSORED_TITLE = "Amazon"
-        const val AMAZON_SEARCH_ENGINE_NAME = "Amazon.com"
-        const val EBAY_SPONSORED_TITLE = "eBay"
 
         // Elevation for undo toasts
         internal const val TOAST_ELEVATION = 80f

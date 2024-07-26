@@ -468,30 +468,9 @@ private fun getMenuItems(
         )
     }
 
-    if (!isProvidedSite) {
-        result.add(
-            MenuItem(
-                title = stringResource(
-                    id = if (isPinnedSite) {
-                        R.string.remove_top_site
-                    } else {
-                        R.string.delete_from_history
-                    },
-                ),
-                testTag = TopSitesTestTag.remove,
-                onClick = { onRemoveTopSiteClicked(topSite) },
-            ),
-        )
-    }
-
     if (isProvidedSite) {
         result.addAll(
             listOf(
-                MenuItem(
-                    title = stringResource(id = R.string.delete_from_history),
-                    testTag = TopSitesTestTag.remove,
-                    onClick = { onRemoveTopSiteClicked(topSite) },
-                ),
                 MenuItem(
                     title = stringResource(id = R.string.top_sites_menu_settings),
                     onClick = onSettingsClicked,
@@ -503,6 +482,20 @@ private fun getMenuItems(
             ),
         )
     }
+
+    result.add(
+        MenuItem(
+            title = stringResource(
+                id = if (isPinnedSite || isProvidedSite) {
+                    R.string.remove_top_site
+                } else {
+                    R.string.delete_from_history
+                },
+            ),
+            testTag = TopSitesTestTag.remove,
+            onClick = { onRemoveTopSiteClicked(topSite) },
+        ),
+    )
 
     return result
 }

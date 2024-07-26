@@ -4,11 +4,12 @@
 
 package org.mozilla.fenix.components.appstate
 
+import mozilla.components.feature.top.sites.TopSite
 import org.mozilla.fenix.components.appstate.AppAction.ShortcutAction
 import org.mozilla.fenix.components.appstate.snackbar.SnackbarState
 
 /**
- * A [ShortcutAction] reducer that updates [AppState.snackbarState].
+ * A [ShortcutAction] reducer that updates [AppState].
  */
 internal object ShortcutStateReducer {
     fun reduce(state: AppState, action: ShortcutAction): AppState = when (action) {
@@ -18,6 +19,12 @@ internal object ShortcutStateReducer {
 
         is ShortcutAction.ShortcutRemoved -> state.copy(
             snackbarState = SnackbarState.ShortcutRemoved,
+        )
+
+        is ShortcutAction.SponsoredShortcutRemoved -> state.copy(
+            topSites = state.topSites.filterNot { topSite ->
+                topSite is TopSite.Provided && topSite.url == action.topSite.url
+            },
         )
     }
 }

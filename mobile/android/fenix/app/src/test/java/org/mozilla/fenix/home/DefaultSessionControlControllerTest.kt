@@ -58,6 +58,7 @@ import org.mozilla.fenix.components.Analytics
 import org.mozilla.fenix.components.AppStore
 import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.appstate.AppAction
+import org.mozilla.fenix.components.appstate.AppAction.ShortcutAction
 import org.mozilla.fenix.components.appstate.AppState
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.settings
@@ -1076,6 +1077,31 @@ class DefaultSessionControlControllerTest {
 
         assertEquals(true, undoSnackbarCalled)
         assertEquals("Mozilla", undoSnackbarShownFor)
+    }
+
+    @Test
+    fun `WHEN provided top site is removed THEN dispatch the shortcut dismissed action`() {
+        val topSite = TopSite.Provided(
+            id = 1L,
+            title = "Mozilla",
+            url = "mozilla.org",
+            clickUrl = "",
+            imageUrl = "",
+            impressionUrl = "",
+            createdAt = 0,
+        )
+
+        assertNull(TopSites.remove.testGetValue())
+
+        createController().handleRemoveTopSiteClicked(topSite)
+
+        assertNotNull(TopSites.remove.testGetValue())
+        assertEquals(1, TopSites.remove.testGetValue()!!.size)
+        assertNull(TopSites.remove.testGetValue()!!.single().extra)
+
+        verify {
+            appStore.dispatch(ShortcutAction.SponsoredShortcutRemoved(topSite))
+        }
     }
 
     @Test
