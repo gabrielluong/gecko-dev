@@ -22,6 +22,7 @@ import mozilla.telemetry.glean.private.NoExtras
 import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.GleanMetrics.NavigationBar
 import org.mozilla.fenix.GleanMetrics.ReaderMode
+import org.mozilla.fenix.GleanMetrics.TabStrip
 import org.mozilla.fenix.GleanMetrics.Translations
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.NavGraphDirections
@@ -93,6 +94,11 @@ interface BrowserToolbarController {
      * @see [BrowserToolbarInteractor.onNewTabButtonLongClicked]
      */
     fun handleNewTabButtonLongClick()
+
+    /**
+     * @see [BrowserToolbarInteractor.onTabStripAddTabClicked]
+     */
+    fun handleTabStripAddTabClick()
 }
 
 private const val MAX_DISPLAY_NUMBER_SHOPPING_CFR = 3
@@ -276,6 +282,20 @@ class DefaultBrowserToolbarController(
     }
 
     override fun handleNewTabButtonClick() {
+        NavigationBar.browserNewTabTapped.record(NoExtras())
+        addNewHomepageTab()
+    }
+
+    override fun handleNewTabButtonLongClick() {
+        NavigationBar.browserNewTabLongTapped.record(NoExtras())
+    }
+
+    override fun handleTabStripAddTabClick() {
+        TabStrip.newTabTapped.record()
+        addNewHomepageTab()
+    }
+
+    private fun addNewHomepageTab() {
         if (settings.enableHomepageAsNewTab) {
             tabsUseCases.addTab.invoke(
                 startLoading = false,
@@ -283,21 +303,11 @@ class DefaultBrowserToolbarController(
             )
         }
 
-        NavigationBar.browserNewTabTapped.record(NoExtras())
-
         browserAnimator.captureEngineViewAndDrawStatically {
             navController.navigate(
                 BrowserFragmentDirections.actionGlobalHome(focusOnAddressBar = true),
             )
         }
-    }
-
-    override fun handleNewTabButtonLongClick() {
-        NavigationBar.browserNewTabLongTapped.record(NoExtras())
-    }
-
-    companion object {
-        internal const val TELEMETRY_BROWSER_IDENTIFIER = "browserMenu"
     }
 
     /**

@@ -560,14 +560,7 @@ abstract class BaseBrowserFragment :
             tabStripContent = {
                 FirefoxTheme {
                     TabStrip(
-                        onAddTabClick = {
-                            findNavController().navigate(
-                                NavGraphDirections.actionGlobalHome(
-                                    focusOnAddressBar = true,
-                                ),
-                            )
-                            TabStripMetrics.newTabTapped.record()
-                        },
+                        onAddTabClick = browserToolbarInteractor::onTabStripAddTabClicked,
                         onLastTabClose = { isPrivate ->
                             requireComponents.appStore.dispatch(
                                 AppAction.TabStripAction.UpdateLastTabClosed(isPrivate),

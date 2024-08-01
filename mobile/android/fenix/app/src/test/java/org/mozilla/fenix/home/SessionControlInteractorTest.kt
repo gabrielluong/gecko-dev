@@ -26,6 +26,7 @@ import org.mozilla.fenix.home.recenttabs.controller.RecentTabController
 import org.mozilla.fenix.home.recentvisits.controller.RecentVisitsController
 import org.mozilla.fenix.home.sessioncontrol.DefaultSessionControlController
 import org.mozilla.fenix.home.sessioncontrol.SessionControlInteractor
+import org.mozilla.fenix.home.tabstrip.TabStripController
 import org.mozilla.fenix.home.toolbar.ToolbarController
 import org.mozilla.fenix.search.toolbar.SearchSelectorController
 
@@ -39,6 +40,7 @@ class SessionControlInteractorTest {
     private val privateBrowsingController: PrivateBrowsingController = mockk(relaxed = true)
     private val searchSelectorController: SearchSelectorController = mockk(relaxed = true)
     private val toolbarController: ToolbarController = mockk(relaxed = true)
+    private val tabStripController: TabStripController = mockk(relaxed = true)
 
     // Note: the recent visits tests are handled in [RecentVisitsInteractorTest] and [RecentVisitsControllerTest]
     private val recentVisitsController: RecentVisitsController = mockk(relaxed = true)
@@ -57,6 +59,7 @@ class SessionControlInteractorTest {
             privateBrowsingController,
             searchSelectorController,
             toolbarController,
+            tabStripController,
         )
     }
 
@@ -282,6 +285,18 @@ class SessionControlInteractorTest {
         interactor.onLearnMoreClicked(link)
 
         verify { pocketStoriesController.handleLearnMoreClicked(link) }
+    }
+
+    @Test
+    fun `GIVEN a TabStripInteractor and show new homepage tab is true WHEN add new tab button is clicked THEN handle it in a TabStripController`() {
+        interactor.onTabStripAddTabClicked(showNewHomepageTab = true)
+        verify { tabStripController.handleTabStripAddTabClick() }
+    }
+
+    @Test
+    fun `GIVEN a TabStripInteractor and show new homepage tab is false WHEN add new tab button is clicked THEN handle it in a ToolbarController`() {
+        interactor.onTabStripAddTabClicked(showNewHomepageTab = false)
+        verify { toolbarController.handleNavigateSearch() }
     }
 
     @Test

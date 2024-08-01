@@ -149,6 +149,7 @@ import org.mozilla.fenix.home.sessioncontrol.DefaultSessionControlController
 import org.mozilla.fenix.home.sessioncontrol.SessionControlInteractor
 import org.mozilla.fenix.home.sessioncontrol.SessionControlView
 import org.mozilla.fenix.home.sessioncontrol.viewholders.CollectionHeaderViewHolder
+import org.mozilla.fenix.home.tabstrip.DefaultTabStripController
 import org.mozilla.fenix.home.toolbar.DefaultToolbarController
 import org.mozilla.fenix.home.toolbar.SearchSelectorBinding
 import org.mozilla.fenix.home.toolbar.SearchSelectorMenuBinding
@@ -492,6 +493,11 @@ class HomeFragment : Fragment() {
                 activity = activity,
                 store = components.core.store,
                 navController = findNavController(),
+            ),
+            tabStripController = DefaultTabStripController(
+                browsingModeManager = browsingModeManager,
+                navController = findNavController(),
+                addTabUseCase = components.useCases.tabsUseCases.addTab,
             ),
         )
 
@@ -1156,7 +1162,9 @@ class HomeFragment : Fragment() {
                     TabStrip(
                         onHome = true,
                         onAddTabClick = {
-                            sessionControlInteractor.onNavigateSearch()
+                            sessionControlInteractor.onTabStripAddTabClicked(
+                                showNewHomepageTab = requireContext().settings().enableHomepageAsNewTab,
+                            )
                             TabStripMetrics.newTabTapped.record()
                         },
                         onSelectedTabClick = {

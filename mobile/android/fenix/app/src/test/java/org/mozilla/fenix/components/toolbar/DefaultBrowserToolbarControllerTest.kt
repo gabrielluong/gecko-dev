@@ -44,6 +44,7 @@ import org.junit.runner.RunWith
 import org.mozilla.fenix.GleanMetrics.Events
 import org.mozilla.fenix.GleanMetrics.NavigationBar
 import org.mozilla.fenix.GleanMetrics.ReaderMode
+import org.mozilla.fenix.GleanMetrics.TabStrip
 import org.mozilla.fenix.GleanMetrics.Translations
 import org.mozilla.fenix.HomeActivity
 import org.mozilla.fenix.R
@@ -495,6 +496,42 @@ class DefaultBrowserToolbarControllerTest {
 
         val controller = createController()
         controller.handleNewTabButtonClick()
+
+        verify {
+            tabsUseCases.addTab.invoke(
+                startLoading = false,
+                private = false,
+            )
+
+            navController.navigate(
+                BrowserFragmentDirections.actionGlobalHome(focusOnAddressBar = true),
+            )
+        }
+    }
+
+    @Test
+    fun `WHEN the tab strip new tab button is clicked THEN navigate to homepage`() {
+        val controller = createController()
+        controller.handleTabStripAddTabClick()
+
+        verify {
+            navController.navigate(
+                BrowserFragmentDirections.actionGlobalHome(focusOnAddressBar = true),
+            )
+        }
+
+        assertNotNull(TabStrip.newTabTapped.testGetValue())
+        val recordedEvents = TabStrip.newTabTapped.testGetValue()!!
+        assertEquals(1, recordedEvents.size)
+        assertEquals(null, recordedEvents.single().extra)
+    }
+
+    @Test
+    fun `GIVEN homepage as a new tab is enabled WHEN the tab strip new tab button is clicked THEN a new homepage tab is displayed`() {
+        every { settings.enableHomepageAsNewTab } returns true
+
+        val controller = createController()
+        controller.handleTabStripAddTabClick()
 
         verify {
             tabsUseCases.addTab.invoke(

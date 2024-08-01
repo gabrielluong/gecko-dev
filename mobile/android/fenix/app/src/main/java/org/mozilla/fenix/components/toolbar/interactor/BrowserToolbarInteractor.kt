@@ -63,6 +63,11 @@ interface BrowserToolbarInteractor {
      * Called when the user long presses on the New Tab button.
      */
     fun onNewTabButtonLongClicked()
+
+    /**
+     * Called when the user taps on the New Tab button in the tab strip.
+     */
+    fun onTabStripAddTabClicked()
 }
 
 /**
@@ -140,5 +145,9 @@ class DefaultBrowserToolbarInteractor(
 
     override fun onNewTabButtonLongClicked() {
         browserToolbarController.handleNewTabButtonLongClick()
+    }
+
+    override fun onTabStripAddTabClicked() {
+        browserToolbarController.handleTabStripAddTabClick()
     }
 }

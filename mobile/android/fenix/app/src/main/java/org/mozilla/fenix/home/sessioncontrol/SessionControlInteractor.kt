@@ -29,6 +29,7 @@ import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem.RecentHistoryGrou
 import org.mozilla.fenix.home.recentvisits.RecentlyVisitedItem.RecentHistoryHighlight
 import org.mozilla.fenix.home.recentvisits.controller.RecentVisitsController
 import org.mozilla.fenix.home.recentvisits.interactor.RecentVisitsInteractor
+import org.mozilla.fenix.home.tabstrip.TabStripController
 import org.mozilla.fenix.home.toolbar.ToolbarController
 import org.mozilla.fenix.home.toolbar.ToolbarInteractor
 import org.mozilla.fenix.search.toolbar.SearchSelectorController
@@ -218,9 +219,21 @@ interface WallpaperInteractor {
 }
 
 /**
+ * Interface for tab strip related actions.
+ */
+interface TabStripInteractor {
+    /**
+     * Called when the user taps on the New Tab button in the tab strip.
+     *
+     * @param showNewHomepageTab Whether or not to show a new homepage tab.
+     */
+    fun onTabStripAddTabClicked(showNewHomepageTab: Boolean)
+}
+
+/**
  * Interactor for the Home screen. Provides implementations for the CollectionInteractor,
  * OnboardingInteractor, TopSiteInteractor, TabSessionInteractor, ToolbarInteractor,
- * ExperimentCardInteractor, RecentTabInteractor, RecentBookmarksInteractor
+ * ExperimentCardInteractor, RecentTabInteractor, RecentBookmarksInteractor, TabStripInteractor
  * and others.
  */
 @SuppressWarnings("TooManyFunctions", "LongParameterList")
@@ -234,6 +247,7 @@ class SessionControlInteractor(
     private val privateBrowsingController: PrivateBrowsingController,
     private val searchSelectorController: SearchSelectorController,
     private val toolbarController: ToolbarController,
+    private val tabStripController: TabStripController,
 ) : CollectionInteractor,
     TopSiteInteractor,
     TabSessionInteractor,
@@ -247,7 +261,8 @@ class SessionControlInteractor(
     PocketStoriesInteractor,
     PrivateBrowsingInteractor,
     SearchSelectorInteractor,
-    WallpaperInteractor {
+    WallpaperInteractor,
+    TabStripInteractor {
 
     override fun onCollectionAddTabTapped(collection: TabCollection) {
         controller.handleCollectionAddTabTapped(collection)
@@ -441,5 +456,13 @@ class SessionControlInteractor(
 
     override fun onMenuItemTapped(item: SearchSelectorMenu.Item) {
         searchSelectorController.handleMenuItemTapped(item)
+    }
+
+    override fun onTabStripAddTabClicked(showNewHomepageTab: Boolean) {
+        if (showNewHomepageTab) {
+            tabStripController.handleTabStripAddTabClick()
+        } else {
+            toolbarController.handleNavigateSearch()
+        }
     }
 }
