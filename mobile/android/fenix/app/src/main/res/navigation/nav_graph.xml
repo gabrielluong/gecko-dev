@@ -1633,6 +1633,35 @@
         <dialog
             android:id="@+id/trustPanelFragment"
             android:name="org.mozilla.fenix.settings.trustpanel.TrustPanelFragment">
+            <argument
+                android:name="sessionId"
+                app:argType="string" />
+            <argument
+                android:name="title"
+                app:argType="string" />
+            <argument
+                android:name="url"
+                app:argType="string" />
+            <argument
+                android:name="isSecured"
+                app:argType="boolean" />
+            <argument
+                android:name="sitePermissions"
+                app:argType="mozilla.components.concept.engine.permission.SitePermissions"
+                app:nullable="true" />
+            <argument
+                android:name="certificateName"
+                android:defaultValue=" "
+                app:argType="string" />
+            <argument
+                android:name="permissionHighlights"
+                app:argType="mozilla.components.browser.state.state.content.PermissionHighlightsState" />
+            <argument
+                android:name="isTrackingProtectionEnabled"
+                app:argType="boolean" />
+            <argument
+                android:name="cookieBannerUIMode"
+                app:argType="org.mozilla.fenix.trackingprotection.CookieBannerUIMode" />
         </dialog>
     </navigation>
 </navigation>

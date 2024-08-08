@@ -9,13 +9,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.core.content.ContextCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import mozilla.components.support.ktx.android.view.setNavigationBarColorCompat
@@ -24,6 +24,8 @@ import org.mozilla.fenix.R
 import org.mozilla.fenix.components.menu.compose.MenuDialogBottomSheet
 import org.mozilla.fenix.settings.trustpanel.ui.PROTECTION_PANEL_ROUTE
 import org.mozilla.fenix.settings.trustpanel.ui.ProtectionPanel
+import org.mozilla.fenix.settings.trustpanel.ui.TRACKERS_PANEL_ROUTE
+import org.mozilla.fenix.settings.trustpanel.ui.TrackersBlockedPanel
 import org.mozilla.fenix.theme.FirefoxTheme
 
 /**
@@ -31,6 +33,7 @@ import org.mozilla.fenix.theme.FirefoxTheme
  */
 class TrustPanelFragment : BottomSheetDialogFragment() {
 
+    private val args by navArgs<TrustPanelFragmentArgs>()
     private val browsingModeManager get() = (activity as HomeActivity).browsingModeManager
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
@@ -70,7 +73,22 @@ class TrustPanelFragment : BottomSheetDialogFragment() {
                     ) {
                         composable(route = PROTECTION_PANEL_ROUTE) {
                             ProtectionPanel(
+                                url = args.url,
+                                title = args.title,
+                                isSecured = args.isSecured,
+                                onTrackerBlockedMenuClick = {
+                                    navHostController.navigate(route = TRACKERS_PANEL_ROUTE)
+                                },
                                 onClearSiteDataMenuClick = {},
+                            )
+                        }
+
+                        composable(route = TRACKERS_PANEL_ROUTE) {
+                            TrackersBlockedPanel(
+                                title = args.title,
+                                onBackButtonClick = {
+                                    navHostController.navigate(route = PROTECTION_PANEL_ROUTE)
+                                },
                             )
                         }
                     }
