@@ -53,6 +53,8 @@ import org.mozilla.fenix.compose.button.RadioButton
 import org.mozilla.fenix.compose.ext.thenConditional
 import org.mozilla.fenix.theme.FirefoxTheme
 
+// The padding value used for the spacing between the text and actions.
+private val LIST_ITEM_SPACING_PADDING = 16.dp
 private val LIST_ITEM_HEIGHT = 56.dp
 private val ICON_SIZE = 24.dp
 private val DIVIDER_VERTICAL_PADDING = 6.dp
@@ -103,7 +105,7 @@ fun TextListItem(
             return@ListItem
         }
 
-        Spacer(modifier = Modifier.width(16.dp))
+        Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
 
         if (onIconClick == null) {
             Icon(
@@ -176,7 +178,7 @@ fun FaviconListItem(
                 )
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
         },
         afterListAction = {
             if (iconPainter == null || onIconClick == null) {
@@ -195,7 +197,7 @@ fun FaviconListItem(
                 )
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
 
             IconButton(
                 onClick = onIconClick,
@@ -273,7 +275,7 @@ fun IconListItem(
                 tint = if (enabled) beforeIconTint else FirefoxTheme.colors.iconDisabled,
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
         },
         afterListAction = {
             if (afterIconPainter == null) {
@@ -294,7 +296,7 @@ fun IconListItem(
                 )
             }
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
 
             if (onAfterIconClick == null) {
                 Icon(
@@ -361,7 +363,7 @@ fun RadioButtonListItem(
                 onClick = onClick,
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
         },
     )
 }
@@ -396,7 +398,7 @@ fun SelectableListItem(
                 isSelected = isSelected,
             )
 
-            Spacer(modifier = Modifier.width(16.dp))
+            Spacer(modifier = Modifier.width(LIST_ITEM_SPACING_PADDING))
         },
         afterListAction = afterListAction,
     )
@@ -480,7 +482,7 @@ private fun ListItem(
                 modifier = Modifier.clickable { onClick?.invoke() },
                 predicate = { onClick != null && enabled },
             )
-            .padding(horizontal = 16.dp, vertical = 6.dp),
+            .padding(horizontal = LIST_ITEM_SPACING_PADDING, vertical = 6.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         beforeListAction()
