@@ -361,7 +361,7 @@ fun RadioButtonListItem(
                 onClick = onClick,
             )
 
-            Spacer(modifier = Modifier.width(32.dp))
+            Spacer(modifier = Modifier.width(16.dp))
         },
     )
 }
