@@ -39,6 +39,10 @@ import mozilla.components.browser.menu.item.SimpleBrowserMenuItem
 import mozilla.components.browser.menu2.BrowserMenuController
 import mozilla.components.browser.toolbar.BrowserToolbar
 import mozilla.components.browser.toolbar.display.DisplayToolbar
+import mozilla.components.compose.base.theme.AcornTheme
+import mozilla.components.compose.browser.toolbar.BrowserDisplayToolbarColors
+import mozilla.components.compose.browser.toolbar.BrowserEditToolbarColors
+import mozilla.components.compose.browser.toolbar.BrowserToolbarColors
 import mozilla.components.compose.browser.toolbar.store.BrowserEditToolbarAction
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarAction
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarStore
@@ -489,28 +493,42 @@ class ToolbarActivity : AppCompatActivity() {
         showToolbar(isCompose = true)
 
         binding.composeToolbar.setContent {
-            val store = remember {
-                BrowserToolbarStore()
+            AcornTheme {
+                val store = remember {
+                    BrowserToolbarStore()
+                }
+
+                val uiState by store.observeAsState(initialValue = store.state) { it }
+
+                BrowserToolbar(
+                    onDisplayMenuClicked = {},
+                    onDisplayToolbarClick = {
+                        store.dispatch(BrowserToolbarAction.ToggleEditMode(editMode = true))
+                    },
+                    onTextEdit = { text ->
+                        store.dispatch(BrowserEditToolbarAction.UpdateEditText(text = text))
+                    },
+                    onTextCommit = {
+                        store.dispatch(BrowserToolbarAction.ToggleEditMode(editMode = false))
+                    },
+                    colors = BrowserToolbarColors(
+                        displayToolbarColors = BrowserDisplayToolbarColors(
+                            background = AcornTheme.colors.layer1,
+                            text = AcornTheme.colors.textPrimary,
+                        ),
+                        editToolbarColors = BrowserEditToolbarColors(
+                            background = AcornTheme.colors.layer1,
+                            urlBackground = AcornTheme.colors.layer3,
+                            text = AcornTheme.colors.textPrimary,
+                            clearButton = AcornTheme.colors.iconPrimary,
+                        ),
+                    ),
+                    url = "https://www.mozilla.org/en-US/firefox/mobile/",
+                    hint = "Search or enter address",
+                    editMode = uiState.editMode,
+                    editText = uiState.editState.editText,
+                )
             }
-
-            val uiState by store.observeAsState(initialValue = store.state) { it }
-
-            BrowserToolbar(
-                onDisplayMenuClicked = {},
-                onDisplayToolbarClick = {
-                    store.dispatch(BrowserToolbarAction.ToggleEditMode(editMode = true))
-                },
-                onTextEdit = { text ->
-                    store.dispatch(BrowserEditToolbarAction.UpdateEditText(text = text))
-                },
-                onTextCommit = {
-                    store.dispatch(BrowserToolbarAction.ToggleEditMode(editMode = false))
-                },
-                url = "https://www.mozilla.org/en-US/firefox/mobile/",
-                hint = "Search or enter address",
-                editMode = uiState.editMode,
-                editText = uiState.editState.editText,
-            )
         }
     }
 
