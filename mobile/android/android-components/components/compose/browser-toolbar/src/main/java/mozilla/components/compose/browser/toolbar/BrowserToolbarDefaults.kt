@@ -25,6 +25,7 @@ object BrowserToolbarDefaults {
         editToolbarColors: BrowserEditToolbarColors = BrowserEditToolbarColors(
             background = MaterialTheme.colors.background,
             text = MaterialTheme.colors.onBackground,
+            clearButton = MaterialTheme.colors.primary,
         ),
     ) = BrowserToolbarColors(
         displayToolbarColors = displayToolbarColors,
