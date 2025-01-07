@@ -20,6 +20,7 @@ object BrowserToolbarDefaults {
     fun colors(
         displayToolbarColors: BrowserDisplayToolbarColors = BrowserDisplayToolbarColors(
             background = MaterialTheme.colors.background,
+            urlBackground = MaterialTheme.colors.background,
             text = MaterialTheme.colors.onBackground,
         ),
         editToolbarColors: BrowserEditToolbarColors = BrowserEditToolbarColors(

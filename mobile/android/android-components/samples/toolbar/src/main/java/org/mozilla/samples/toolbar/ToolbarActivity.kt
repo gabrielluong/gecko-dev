@@ -564,6 +564,7 @@ class ToolbarActivity : AppCompatActivity() {
                     colors = BrowserToolbarColors(
                         displayToolbarColors = BrowserDisplayToolbarColors(
                             background = AcornTheme.colors.layer1,
+                            urlBackground = AcornTheme.colors.layer3,
                             text = AcornTheme.colors.textPrimary,
                         ),
                         editToolbarColors = BrowserEditToolbarColors(
