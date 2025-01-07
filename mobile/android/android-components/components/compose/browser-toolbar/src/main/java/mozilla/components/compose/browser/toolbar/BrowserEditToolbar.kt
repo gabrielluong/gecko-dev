@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import mozilla.components.compose.base.theme.AcornTheme
 import mozilla.components.compose.browser.toolbar.concept.Action
 import mozilla.components.compose.browser.toolbar.concept.Action.CustomAction
+import mozilla.components.compose.browser.toolbar.ui.InlineAutocompleteTextField
 import mozilla.components.compose.browser.toolbar.ui.SearchSelector
 import mozilla.components.ui.icons.R as iconsR
 
@@ -41,6 +42,8 @@ private val ROUNDED_CORNER_SHAPE = RoundedCornerShape(8.dp)
  *
  * @param url The initial URL to be edited.
  * @param colors The color scheme to use in the browser edit toolbar.
+ * @param useComposeTextField Whether or not to use the Compose [TextField] or a view-based
+ * inline autocomplete text field.
  * @param editActionsStart List of [Action]s to be displayed at the start of the URL of
  * the edit toolbar.
  * @param editActionsEnd List of [Action]s to be displayed at the end of the URL of
@@ -54,6 +57,7 @@ private val ROUNDED_CORNER_SHAPE = RoundedCornerShape(8.dp)
 fun BrowserEditToolbar(
     url: String,
     colors: BrowserEditToolbarColors,
+    useComposeTextField: Boolean = false,
     editActionsStart: List<Action> = emptyList(),
     editActionsEnd: List<Action> = emptyList(),
     onUrlEdit: (String) -> Unit = {},
@@ -71,44 +75,65 @@ fun BrowserEditToolbar(
                 ),
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            TextField(
-                value = url,
-                onValueChange = { value ->
-                    onUrlEdit(value)
-                },
-                colors = TextFieldDefaults.textFieldColors(
-                    textColor = colors.text,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                    errorIndicatorColor = Color.Transparent,
-                ),
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Uri,
-                    imeAction = ImeAction.Go,
-                ),
-                keyboardActions = KeyboardActions(
-                    onGo = { onUrlCommitted(url) },
-                ),
-                modifier = Modifier.fillMaxWidth(),
-                shape = ROUNDED_CORNER_SHAPE,
-                leadingIcon = {
-                    ActionContainer(actions = editActionsStart)
-                },
-                trailingIcon = {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        ActionContainer(actions = editActionsEnd)
+            if (useComposeTextField) {
+                TextField(
+                    value = url,
+                    onValueChange = { value ->
+                        onUrlEdit(value)
+                    },
+                    colors = TextFieldDefaults.textFieldColors(
+                        textColor = colors.text,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                        disabledIndicatorColor = Color.Transparent,
+                        errorIndicatorColor = Color.Transparent,
+                    ),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Uri,
+                        imeAction = ImeAction.Go,
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onGo = { onUrlCommitted(url) },
+                    ),
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = ROUNDED_CORNER_SHAPE,
+                    leadingIcon = {
+                        ActionContainer(actions = editActionsStart)
+                    },
+                    trailingIcon = {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            ActionContainer(actions = editActionsEnd)
 
-                        if (url.isNotEmpty()) {
-                            ClearButton(
-                                tint = colors.clearButton,
-                                onButtonClicked = { onUrlEdit("") },
-                            )
+                            if (url.isNotEmpty()) {
+                                ClearButton(
+                                    tint = colors.clearButton,
+                                    onButtonClicked = { onUrlEdit("") },
+                                )
+                            }
                         }
-                    }
-                },
-            )
+                    },
+                )
+            } else {
+                ActionContainer(actions = editActionsStart)
+
+                InlineAutocompleteTextField(
+                    url = url,
+                    colors = colors,
+                    modifier = Modifier.weight(1f),
+                    onUrlEdit = onUrlEdit,
+                    onUrlCommitted = onUrlCommitted,
+                )
+
+                ActionContainer(actions = editActionsEnd)
+
+                if (url.isNotEmpty()) {
+                    ClearButton(
+                        tint = colors.clearButton,
+                        onButtonClicked = { onUrlEdit("") },
+                    )
+                }
+            }
         }
     }
 }
@@ -120,7 +145,7 @@ fun BrowserEditToolbar(
  * @param onButtonClicked Will be called when the user clicks on the button.
  */
 @Composable
-fun ClearButton(
+private fun ClearButton(
     tint: Color,
     onButtonClicked: () -> Unit = {},
 ) {
