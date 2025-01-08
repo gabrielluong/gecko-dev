@@ -18,6 +18,11 @@ object BrowserToolbarDefaults {
      */
     @Composable
     fun colors(
+        customTabToolbarColors: CustomTabToolbarColors = CustomTabToolbarColors(
+            background = MaterialTheme.colors.background,
+            title = MaterialTheme.colors.onBackground,
+            url = MaterialTheme.colors.onBackground,
+        ),
         displayToolbarColors: BrowserDisplayToolbarColors = BrowserDisplayToolbarColors(
             background = MaterialTheme.colors.background,
             urlBackground = MaterialTheme.colors.background,
@@ -30,6 +35,7 @@ object BrowserToolbarDefaults {
             clearButton = MaterialTheme.colors.primary,
         ),
     ) = BrowserToolbarColors(
+        customTabToolbarColor = customTabToolbarColors,
         displayToolbarColors = displayToolbarColors,
         editToolbarColors = editToolbarColors,
     )

@@ -44,6 +44,8 @@ import mozilla.components.compose.base.theme.AcornTheme
 import mozilla.components.compose.browser.toolbar.BrowserDisplayToolbarColors
 import mozilla.components.compose.browser.toolbar.BrowserEditToolbarColors
 import mozilla.components.compose.browser.toolbar.BrowserToolbarColors
+import mozilla.components.compose.browser.toolbar.BrowserToolbarDefaults
+import mozilla.components.compose.browser.toolbar.CustomTabToolbarColors
 import mozilla.components.compose.browser.toolbar.concept.Action
 import mozilla.components.compose.browser.toolbar.store.BrowserEditToolbarAction
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarAction
@@ -51,6 +53,7 @@ import mozilla.components.compose.browser.toolbar.store.BrowserToolbarState
 import mozilla.components.compose.browser.toolbar.store.BrowserToolbarStore
 import mozilla.components.compose.browser.toolbar.store.DisplayState
 import mozilla.components.compose.browser.toolbar.store.EditState
+import mozilla.components.compose.browser.toolbar.store.Mode
 import mozilla.components.compose.browser.toolbar.ui.SearchSelector
 import mozilla.components.concept.menu.Side
 import mozilla.components.concept.menu.candidate.DecorativeTextMenuCandidate
@@ -100,6 +103,7 @@ class ToolbarActivity : AppCompatActivity() {
             ToolbarConfiguration.FENIX -> setupFenixToolbar()
             ToolbarConfiguration.FENIX_CUSTOMTAB -> setupFenixCustomTabToolbar()
             ToolbarConfiguration.COMPOSE_TOOLBAR -> setupComposeToolbar()
+            ToolbarConfiguration.COMPOSE_CUSTOMTAB -> setupComposeCustomTabToolbar()
         }
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
@@ -574,6 +578,11 @@ class ToolbarActivity : AppCompatActivity() {
                         store.dispatch(BrowserToolbarAction.ToggleEditMode(editMode = false))
                     },
                     colors = BrowserToolbarColors(
+                        customTabToolbarColor = CustomTabToolbarColors(
+                            background = AcornTheme.colors.layer1,
+                            title = AcornTheme.colors.textPrimary,
+                            url = AcornTheme.colors.textPrimary,
+                        ),
                         displayToolbarColors = BrowserDisplayToolbarColors(
                             background = AcornTheme.colors.layer1,
                             urlBackground = AcornTheme.colors.layer3,
@@ -587,6 +596,58 @@ class ToolbarActivity : AppCompatActivity() {
                         ),
                     ),
                     url = "https://www.mozilla.org/en-US/firefox/mobile/",
+                )
+            }
+        }
+    }
+
+    private fun setupComposeCustomTabToolbar() {
+        showToolbar(isCompose = true)
+
+        binding.composeToolbar.setContent {
+            AcornTheme {
+                val iconPrimaryTint = AcornTheme.colors.iconPrimary.toArgb()
+
+                val store = remember {
+                    BrowserToolbarStore(
+                        initialState = BrowserToolbarState(
+                            mode = Mode.CUSTOM_TAB,
+                            displayState = DisplayState(
+                                navigationActions = listOf(
+                                    Action.ActionButton(
+                                        icon = iconsR.drawable.mozac_ic_cross_24,
+                                        contentDescription = null,
+                                        tint = iconPrimaryTint,
+                                        onClick = {},
+                                    ),
+                                ),
+                                browserActions = listOf(
+                                    Action.ActionButton(
+                                        icon = iconsR.drawable.mozac_ic_arrow_clockwise_24,
+                                        contentDescription = null,
+                                        tint = iconPrimaryTint,
+                                        onClick = {},
+                                    ),
+                                ),
+                            ),
+                        ),
+                    )
+                }
+
+                BrowserToolbar(
+                    store = store,
+                    onDisplayToolbarClick = {},
+                    onTextEdit = {},
+                    onTextCommit = {},
+                    colors = BrowserToolbarDefaults.colors(
+                        customTabToolbarColors = CustomTabToolbarColors(
+                            background = AcornTheme.colors.layer1,
+                            title = AcornTheme.colors.textPrimary,
+                            url = AcornTheme.colors.textSecondary,
+                        ),
+                    ),
+                    url = "https://www.mozilla.org/en-US/firefox/mobile/",
+                    title = "Mozilla",
                 )
             }
         }
