@@ -78,6 +78,11 @@ interface TabsTrayController : SyncedTabsController, InactiveTabsController, Tab
     fun handleNavigateToBrowser()
 
     /**
+     * Navigates from the tabs tray to the homepage.
+     */
+    fun handleNavigateToHome()
+
+    /**
      * Deletes the [TabSessionState] with the specified [tabId] or calls [DownloadCancelDialogFragment]
      * if user tries to close the last private tab while private downloads are active.
      *
@@ -297,6 +302,21 @@ class DefaultTabsTrayController(
             return
         } else if (!navController.popBackStack(R.id.browserFragment, false)) {
             navController.navigate(R.id.browserFragment)
+        }
+    }
+
+    /**
+     * Dismisses the tab trays and navigates to the homepage.
+     */
+    override fun handleNavigateToHome() {
+        dismissTray()
+
+        if (navController.currentDestination?.id == R.id.homeFragment) {
+            return
+        } else if (!navController.popBackStack(R.id.homeFragment, false)) {
+            navController.navigate(
+                TabsTrayFragmentDirections.actionGlobalHome(),
+            )
         }
     }
 
@@ -579,9 +599,16 @@ class DefaultTabsTrayController(
                 val mode = BrowsingMode.fromBoolean(tab.content.private)
                 browsingModeManager.mode = mode
                 appStore.dispatch(AppAction.ModeChange(mode))
-                handleNavigateToBrowser()
+
+                if (tab.content.url == "about:home") {
+                    handleNavigateToHome()
+                } else {
+                    handleNavigateToBrowser()
+                }
             }
+
             tab.id in selected.map { it.id } -> handleTabUnselected(tab)
+
             source != INACTIVE_TABS_FEATURE_NAME -> {
                 tabsTrayStore.dispatch(TabsTrayAction.AddSelectTab(tab))
             }
