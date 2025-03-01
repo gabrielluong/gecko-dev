@@ -14,6 +14,7 @@ import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.request.RequestInterceptor
 import mozilla.components.support.utils.ext.isContentUrl
 import org.mozilla.fenix.GleanMetrics.ErrorPage
+import org.mozilla.fenix.components.usecases.FenixBrowserUseCases.Companion.ABOUT_HOME
 import org.mozilla.fenix.ext.components
 import org.mozilla.fenix.ext.isOnline
 import java.lang.ref.WeakReference
@@ -40,8 +41,11 @@ class AppRequestInterceptor(
         isDirectNavigation: Boolean,
         isSubframeRequest: Boolean,
     ): RequestInterceptor.InterceptionResponse? {
-        val services = context.components.services
+        interceptAboutHomeRequest(uri)?.let { response ->
+            return response
+        }
 
+        val services = context.components.services
         return services.appLinksInterceptor.onLoadRequest(
             engineSession,
             uri,
@@ -79,6 +83,23 @@ class AppRequestInterceptor(
         )
 
         return RequestInterceptor.ErrorResponse(errorPageUri)
+    }
+
+    /**
+     * Intercepts and denies [uri] request to [ABOUT_HOME].
+     *
+     * @return [RequestInterceptor.InterceptionResponse.Deny] when [ABOUT_HOME] request is
+     * intercepted and request can be skipped, otherwise null to continue loading the page
+     */
+    private fun interceptAboutHomeRequest(
+        uri: String,
+    ): RequestInterceptor.InterceptionResponse? {
+        if (uri != ABOUT_HOME) {
+            // Let the original request proceed.
+            return null
+        }
+
+        return RequestInterceptor.InterceptionResponse.Deny
     }
 
     /**
