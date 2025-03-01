@@ -50,6 +50,22 @@ class AppRequestInterceptorTest {
     }
 
     @Test
+    fun `GIVEN request to ABOUT_HOME_URL WHEN request is intercepted THEN deny the request`() {
+        val result = interceptor.onLoadRequest(
+            engineSession = mockk(),
+            uri = "about:home",
+            lastUri = "about:home",
+            hasUserGesture = true,
+            isSameDomain = true,
+            isDirectNavigation = false,
+            isRedirect = false,
+            isSubframeRequest = false,
+        )
+
+        assertEquals(RequestInterceptor.InterceptionResponse.Deny, result)
+    }
+
+    @Test
     fun `onErrorRequest results in correct error page for low risk level error`() {
         setOf(
             ErrorType.UNKNOWN,
