@@ -7,11 +7,13 @@ import androidx.navigation.NavController
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
+import io.mockk.verify
 import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.request.RequestInterceptor
 import mozilla.components.support.test.robolectric.testContext
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -44,6 +46,26 @@ class AppRequestInterceptorTest {
         )
 
         every { (interceptor as AppRequestInterceptor).isConnected() } returns true
+    }
+
+    @Test
+    fun `GIVEN request to ABOUT_HOME WHEN request is intercepted THEN return a null interception response and navigate to the homepage`() {
+        val result = interceptor.onLoadRequest(
+            engineSession = mockk(),
+            uri = "about:home",
+            lastUri = "about:home",
+            hasUserGesture = true,
+            isSameDomain = true,
+            isDirectNavigation = false,
+            isRedirect = false,
+            isSubframeRequest = false,
+        )
+
+        assertNull(result)
+
+        verify {
+            navigationController.navigate(NavGraphDirections.actionGlobalHome())
+        }
     }
 
     @Test
