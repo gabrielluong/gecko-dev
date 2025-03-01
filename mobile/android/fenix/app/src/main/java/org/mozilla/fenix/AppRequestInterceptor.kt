@@ -12,6 +12,7 @@ import mozilla.components.browser.errorpages.ErrorPages
 import mozilla.components.browser.errorpages.ErrorType
 import mozilla.components.concept.engine.EngineSession
 import mozilla.components.concept.engine.request.RequestInterceptor
+import mozilla.components.support.base.log.logger.Logger
 import mozilla.components.support.utils.ext.isContentUrl
 import org.mozilla.fenix.GleanMetrics.ErrorPage
 import org.mozilla.fenix.ext.components
@@ -40,8 +41,11 @@ class AppRequestInterceptor(
         isDirectNavigation: Boolean,
         isSubframeRequest: Boolean,
     ): RequestInterceptor.InterceptionResponse? {
-        val services = context.components.services
+        interceptAboutHomeRequest(uri)?.let { response ->
+            return response
+        }
 
+        val services = context.components.services
         return services.appLinksInterceptor.onLoadRequest(
             engineSession,
             uri,
@@ -79,6 +83,23 @@ class AppRequestInterceptor(
         )
 
         return RequestInterceptor.ErrorResponse(errorPageUri)
+    }
+
+    /**
+     * Intercepts and denies [uri] request to [ABOUT_HOME_URL].
+     *
+     * @return [RequestInterceptor.InterceptionResponse.Deny] when [ABOUT_HOME_URL] request is
+     * intercepted and request can be skipped, otherwise null to continue loading the page
+     */
+    private fun interceptAboutHomeRequest(
+        uri: String,
+    ): RequestInterceptor.InterceptionResponse? {
+        if (uri != ABOUT_HOME_URL) {
+            // Let the original request proceed.
+            return null
+        }
+
+        return RequestInterceptor.InterceptionResponse.Deny
     }
 
     /**
@@ -163,5 +184,6 @@ class AppRequestInterceptor(
     companion object {
         internal const val LOW_AND_MEDIUM_RISK_ERROR_PAGES = "low_and_medium_risk_error_pages.html"
         internal const val HIGH_RISK_ERROR_PAGES = "high_risk_error_pages.html"
+        internal const val ABOUT_HOME_URL = "about:home"
     }
 }
