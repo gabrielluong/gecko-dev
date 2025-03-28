@@ -4,6 +4,7 @@
 
 package org.mozilla.fenix.components.usecases
 
+import android.content.Context
 import mozilla.components.browser.state.search.SearchEngine
 import mozilla.components.browser.state.state.SessionState
 import mozilla.components.concept.base.profiler.Profiler
@@ -14,16 +15,19 @@ import mozilla.components.feature.session.SessionUseCases
 import mozilla.components.feature.tabs.TabsUseCases
 import mozilla.components.support.ktx.kotlin.isUrl
 import mozilla.components.support.ktx.kotlin.toNormalizedUrl
+import org.mozilla.fenix.R
 
 /**
  * Use cases for handling loading a URL and performing a search.
  *
+ * @param context An Android [Context].
  * @param addNewTabUseCase [TabsUseCases.AddNewTabUseCase] used for adding new tabs.
  * @param loadUrlUseCase [SessionUseCases.DefaultLoadUrlUseCase] used for loading a URL.
  * @param searchUseCases [SearchUseCases] used for performing a search.
  * @param profiler [Profiler] used to add profiler markers.
  */
 class FenixBrowserUseCases(
+    private val context: Context,
     private val addNewTabUseCase: TabsUseCases.AddNewTabUseCase,
     private val loadUrlUseCase: SessionUseCases.DefaultLoadUrlUseCase,
     private val searchUseCases: SearchUseCases,
@@ -120,6 +124,7 @@ class FenixBrowserUseCases(
         return addNewTabUseCase.invoke(
             url = ABOUT_HOME,
             startLoading = false,
+            title = context.getString(R.string.tab_tray_homepage_tab),
             private = private,
         )
     }
